@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pontes L. 14 – Wie entstand Rom?</title>
+<style>
+  :root {
+    --rot: #8B1A1A;
+    --gold: #C9A44D;
+    --gold-hell: #F0D88A;
+    --pergament: #F7EDD8;
+    --pergament-dunkel: #EDD9A3;
+    --stein: #3D3435;
+    --stein-hell: #6B5B55;
+    --weiss: #FDF8F0;
+    --schatten: rgba(61,52,53,0.18);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background-color: #2A1F1A;
+    background-image:
+      radial-gradient(ellipse at 20% 20%, rgba(139,26,26,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 80%, rgba(201,164,77,0.10) 0%, transparent 60%);
+    min-height: 100vh;
+    color: var(--stein);
+  }
+
+  /* ─── HEADER ────────────────────────────────────────────── */
+  header {
+    background: linear-gradient(135deg, var(--rot) 0%, #5C0F0F 60%, #3A0808 100%);
+    padding: 40px 24px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 4px solid var(--gold);
+  }
+  header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(
+      90deg, transparent, transparent 40px,
+      rgba(255,255,255,0.03) 40px, rgba(255,255,255,0.03) 41px
+    );
+  }
+  .header-ornament {
+    font-size: 1.1rem;
+    color: var(--gold);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    opacity: 0.85;
+  }
+  header h1 {
+    font-size: clamp(1.5rem, 4vw, 2.6rem);
+    color: var(--weiss);
+    line-height: 1.25;
+    margin-bottom: 6px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  }
+  header h1 em {
+    color: var(--gold-hell);
+    font-style: normal;
+  }
+  .subtitle {
+    color: var(--pergament-dunkel);
+    font-size: 1rem;
+    opacity: 0.85;
+    margin-top: 4px;
+  }
+  .leitfrage-badge {
+    display: inline-block;
+    margin-top: 20px;
+    background: var(--gold);
+    color: var(--stein);
+    font-size: 1.05rem;
+    font-weight: bold;
+    padding: 10px 28px;
+    border-radius: 40px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  }
+  .leitfrage-badge span { font-style: italic; }
+
+  /* ─── FORTSCHRITTSBALKEN ─────────────────────────────────── */
+  .progress-container {
+    background: #1E1510;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 2px solid var(--gold);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .progress-label {
+    color: var(--gold);
+    font-size: 0.85rem;
+    white-space: nowrap;
+    min-width: 90px;
+  }
+  .progress-bar-outer {
+    flex: 1;
+    height: 12px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid rgba(201,164,77,0.3);
+  }
+  .progress-bar-inner {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--gold-hell));
+    border-radius: 6px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+  .progress-count {
+    color: var(--gold);
+    font-size: 0.85rem;
+    white-space: nowrap;
+    min-width: 55px;
+    text-align: right;
+  }
+  .reset-btn {
+    background: none;
+    border: 1px solid rgba(201,164,77,0.4);
+    color: var(--gold);
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .reset-btn:hover { background: rgba(201,164,77,0.15); }
+
+  /* ─── HAUPT-LAYOUT ───────────────────────────────────────── */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 20px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  /* ─── PHASEN-KARTE ──────────────────────────────────────── */
+  .phase-card {
+    background: var(--pergament);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 24px var(--schatten), 0 1px 0 rgba(255,255,255,0.1);
+    border: 1px solid rgba(201,164,77,0.3);
+  }
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 24px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  .phase-header:hover { background: rgba(139,26,26,0.06); }
+  .phase-num {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--weiss);
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  .phase-title-block { flex: 1; }
+  .phase-title { font-size: 1.15rem; font-weight: bold; }
+  .phase-desc { font-size: 0.82rem; color: var(--stein-hell); margin-top: 3px; }
+  .phase-toggle {
+    color: var(--stein-hell);
+    font-size: 1.3rem;
+    transition: transform 0.3s;
+  }
+  .phase-card.open .phase-toggle { transform: rotate(180deg); }
+  .phase-progress-mini {
+    font-size: 0.78rem;
+    color: var(--stein-hell);
+    margin-top: 4px;
+  }
+
+  .phase-body {
+    display: none;
+    padding: 0 24px 24px;
+    border-top: 1px solid rgba(201,164,77,0.25);
+  }
+  .phase-card.open .phase-body { display: block; }
+
+  /* Farben pro Phase */
+  .ph0 .phase-num { background: #5A5A8A; }
+  .ph0 .phase-header { border-left: 5px solid #5A5A8A; }
+  .ph1 .phase-num { background: #2E6B3E; }
+  .ph1 .phase-header { border-left: 5px solid #2E6B3E; }
+  .ph2 .phase-num { background: #7A4E1A; }
+  .ph2 .phase-header { border-left: 5px solid #7A4E1A; }
+  .ph3 .phase-num { background: var(--rot); }
+  .ph3 .phase-header { border-left: 5px solid var(--rot); }
+  .ph4 .phase-num { background: #1A5C7A; }
+  .ph4 .phase-header { border-left: 5px solid #1A5C7A; }
+  .ph5 .phase-num { background: #5A1A7A; }
+  .ph5 .phase-header { border-left: 5px solid #5A1A7A; }
+
+  /* ─── AUFGABEN-RASTER ────────────────────────────────────── */
+  .ab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+    margin-top: 18px;
+  }
+
+  .ab-item {
+    background: var(--weiss);
+    border-radius: 8px;
+    padding: 14px 16px;
+    border: 1.5px solid rgba(201,164,77,0.3);
+    transition: all 0.2s;
+    position: relative;
+  }
+  .ab-item:hover { border-color: var(--gold); box-shadow: 0 3px 12px var(--schatten); }
+  .ab-item.done {
+    background: #F0F7F0;
+    border-color: #7AAD7A;
+    opacity: 0.75;
+  }
+  .ab-item.done .ab-title { text-decoration: line-through; color: var(--stein-hell); }
+
+  .ab-check-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .ab-check {
+    width: 20px; height: 20px;
+    border-radius: 4px;
+    border: 2px solid var(--gold);
+    cursor: pointer;
+    flex-shrink: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    background: white;
+    margin-top: 1px;
+    transition: all 0.15s;
+  }
+  .ab-check:checked {
+    background: #5A9E5A;
+    border-color: #5A9E5A;
+  }
+  .ab-check:checked::after {
+    content: '✓';
+    color: white;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    line-height: 1;
+    margin-top: -1px;
+    margin-left: 2px;
+  }
+  .ab-text { flex: 1; }
+  .ab-title {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--stein);
+    line-height: 1.35;
+  }
+  .ab-sub {
+    font-size: 0.78rem;
+    color: var(--stein-hell);
+    margin-top: 3px;
+    font-style: italic;
+  }
+  .ab-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+  }
+  .ab-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: all 0.15s;
+    font-family: 'Georgia', serif;
+  }
+  .ab-link.pdf {
+    background: #FEF0F0;
+    color: var(--rot);
+    border: 1px solid rgba(139,26,26,0.25);
+  }
+  .ab-link.pdf:hover { background: var(--rot); color: white; }
+  .ab-link.docx {
+    background: #EEF4FC;
+    color: #1A4E8A;
+    border: 1px solid rgba(26,78,138,0.25);
+  }
+  .ab-link.docx:hover { background: #1A4E8A; color: white; }
+  .ab-link.lsg {
+    background: #F0F7F0;
+    color: #2E6B3E;
+    border: 1px solid rgba(46,107,62,0.25);
+  }
+  .ab-link.lsg:hover { background: #2E6B3E; color: white; }
+
+  /* ─── WAHL-GRUPPE (z. B. AB 3a ODER 3b) ─────────────────── */
+  .choice-group {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0;
+    align-items: stretch;
+    margin-top: 14px;
+  }
+  .choice-oder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: var(--stein-hell);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    gap: 6px;
+    flex-direction: column;
+  }
+  .choice-oder::before,
+  .choice-oder::after {
+    content: '';
+    display: block;
+    width: 1px;
+    flex: 1;
+    background: rgba(201,164,77,0.35);
+  }
+  .choice-card {
+    background: var(--weiss);
+    border-radius: 8px;
+    padding: 14px 16px;
+    border: 1px solid rgba(201,164,77,0.25);
+  }
+  .choice-card.profi { border-color: rgba(61,52,53,0.15); background: #FAFAF8; }
+  .choice-card.basis { border-color: rgba(61,52,53,0.15); background: #FAFAF8; }
+  .choice-level {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--stein-hell);
+  }
+  .choice-title { font-size: 0.9rem; font-weight: bold; color: var(--stein); line-height: 1.35; }
+  .choice-sub { font-size: 0.78rem; color: var(--stein-hell); margin-top: 4px; font-style: italic; line-height: 1.4; }
+  @media (max-width: 600px) {
+    .choice-group { grid-template-columns: 1fr; }
+    .choice-oder { flex-direction: row; padding: 6px 0; }
+    .choice-oder::before, .choice-oder::after { width: auto; height: 1px; flex: 1; }
+  }
+
+  /* ─── HINWEIS-BOXEN ──────────────────────────────────────── */
+  .hinweis {
+    background: rgba(201,164,77,0.12);
+    border-left: 4px solid var(--gold);
+    border-radius: 4px;
+    padding: 10px 14px;
+    font-size: 0.84rem;
+    color: #5A4A1A;
+    margin-top: 14px;
+    line-height: 1.5;
+  }
+  .hinweis strong { color: var(--rot); }
+
+  /* ─── GRAMMATICUS-BLOCK ───────────────────────────────────── */
+  .grammaticus-block {
+    background: linear-gradient(135deg, #F7EDD8, #F0D9B0);
+    border: 1.5px dashed var(--gold);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 14px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .grammaticus-icon { font-size: 1.8rem; flex-shrink: 0; line-height: 1; }
+  .grammaticus-text h4 { font-size: 0.9rem; color: var(--rot); margin-bottom: 4px; }
+  .grammaticus-text p { font-size: 0.82rem; color: var(--stein-hell); line-height: 1.4; }
+
+  /* ─── SECTION-LABEL ──────────────────────────────────────── */
+  .section-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--stein-hell);
+    margin-top: 20px;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(201,164,77,0.3);
+  }
+
+  /* ─── INFO-LEISTE OBEN ───────────────────────────────────── */
+  .info-banner {
+    background: linear-gradient(135deg, #1E2A1E, #0F1A0F);
+    border: 1px solid rgba(90,158,90,0.3);
+    border-radius: 10px;
+    padding: 16px 22px;
+    color: #A8D4A8;
+    font-size: 0.85rem;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .info-item { display: flex; align-items: center; gap: 8px; }
+  .info-icon { font-size: 1.2rem; }
+
+  /* ─── LEHRER-ANSICHT-TOGGLE ───────────────────────────────── */
+  .view-toggle {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-bottom: 4px;
+  }
+  .view-btn {
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 1.5px solid rgba(201,164,77,0.4);
+    background: transparent;
+    color: var(--gold);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Georgia', serif;
+  }
+  .view-btn.active { background: var(--gold); color: var(--stein); font-weight: bold; }
+  .lehrer-only { display: none; }
+  body.lehrer-modus .lehrer-only { display: block; }
+  body.lehrer-modus .ab-item.lehrer-only { display: flex; flex-direction: column; }
+
+  /* ─── LEITFRAGE PANEL ─────────────────────────────────────── */
+  .leitfrage-panel {
+    background: linear-gradient(135deg, #1A1A3A, #0A0A2A);
+    border-radius: 12px;
+    padding: 28px 30px;
+    color: var(--weiss);
+    border: 2px solid rgba(90,90,180,0.4);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+  .leitfrage-panel h2 {
+    color: #A0A0FF;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .leitfrage-panel .frage {
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--gold-hell);
+    margin-bottom: 16px;
+    line-height: 1.4;
+  }
+  .leitfrage-panel p {
+    font-size: 0.88rem;
+    color: #C0C0E0;
+    line-height: 1.6;
+  }
+
+  /* ─── SPERR-LOGIK ───────────────────────────────────────── */
+  .ab-check:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+    border-color: #ccc;
+    background: #eee;
+  }
+  .ab-item.item-locked { opacity: 0.45; }
+  .ab-item.item-locked .ab-links { pointer-events: none; opacity: 0.4; }
+  .unlock-hint {
+    font-size: 0.76rem;
+    color: #9A7A6A;
+    font-style: italic;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  @keyframes unlockFlash {
+    0%   { box-shadow: 0 0 0 0 rgba(201,164,77,0.0); }
+    30%  { box-shadow: 0 0 24px 8px rgba(201,164,77,0.6); }
+    100% { box-shadow: 0 6px 24px var(--schatten); }
+  }
+  .just-unlocked { animation: unlockFlash 0.9s ease forwards; }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .ab-grid { grid-template-columns: 1fr; }
+    .progress-container { flex-wrap: wrap; }
+    header { padding: 28px 16px; }
+    main { padding: 20px 12px 40px; }
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: #1E1510; }
+  ::-webkit-scrollbar-thumb { background: var(--rot); border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-ornament">✦ Pontes · Lektion 14 · Plusquamperfekt ✦</div>
+  <h1>Rōmulus et Remus – <em>Die Gründung Roms</em></h1>
+  <div class="subtitle">Offene Unterrichtseinheit · Klasse 7 · Lateinisch</div>
+  <div class="leitfrage-badge">🏛️ Leitfrage: <span>„Was geschah, bevor Rom entstand – und wie erzählt man von der Vorzeit?"</span></div>
+</header>
+
+<!-- FORTSCHRITTSLEISTE -->
+<div class="progress-container">
+  <span class="progress-label">📋 Fortschritt</span>
+  <div class="progress-bar-outer">
+    <div class="progress-bar-inner" id="progressBar"></div>
+  </div>
+  <span class="progress-count" id="progressCount">0 / 0</span>
+  <button class="reset-btn" id="btnReset">Zurücksetzen</button>
+</div>
+
+<main>
+
+  <!-- VIEW TOGGLE -->
+  <div class="view-toggle">
+    <button class="view-btn active" id="btnSchueler">👨‍🎓 Schüleransicht</button>
+    <button class="view-btn" id="btnLehrer">👨‍🏫 Lehreransicht</button>
+  </div>
+
+  <!-- LEITFRAGE PANEL -->
+  <div class="leitfrage-panel">
+    <h2>🏛️ Die Leitfrage</h2>
+    <div class="frage">„Was geschah, bevor Rom entstand – und wie erzählt man von der Vorzeit?"</div>
+    <p>Diese Frage begleitet euch durch die gesamte Einheit. Schritt für Schritt lernt ihr das <strong>Plusquamperfekt</strong> kennen – die Zeitform, mit der die Römer über das erzählten, was <em>noch früher</em> geschehen war. Am Ende beantwortet ihr die Leitfrage und beurteilt: Was ist Sage, was ist Geschichte?</p>
+  </div>
+
+  <!-- INFO-BANNER -->
+  <div class="info-banner">
+    <div class="info-item"><span class="info-icon">📚</span> Pontes Bd. 1 · L. 14</div>
+    <div class="info-item"><span class="info-icon">⏱️</span> 6–8 Stunden</div>
+    <div class="info-item"><span class="info-icon">🎯</span> Grammatik: Plusquamperfekt</div>
+    <div class="info-item"><span class="info-icon">📜</span> Text: Rōmulus et Remus</div>
+    <div class="info-item"><span class="info-icon">🔓</span> Freie Reihenfolge in den Phasen möglich</div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       PHASE 0: EINSTIEG
+  ══════════════════════════════════════════════════════════ -->
+  <div class="phase-card ph0 open" id="ph0">
+    <div class="phase-header">
+      <div class="phase-num">✦</div>
+      <div class="phase-title-block">
+        <div class="phase-title">Einstieg in die Einheit</div>
+        <div class="phase-desc">Leitfrage kennenlernen · Lernplan erhalten · Freiarbeit erklären</div>
+        <div class="phase-progress-mini" id="prog-ph0"></div>
+      </div>
+      <div class="phase-toggle">▾</div>
+    </div>
+    <div class="phase-body">
+      <div class="ab-grid">
+        <div class="ab-item" data-id="e1">
+          <div class="ab-check-row">
+            <input type="checkbox" class="ab-check">
+            <div class="ab-text">
+              <div class="ab-title">Lernplan ausgeteilt</div>
+              <div class="ab-sub">Persönlichen Laufzettel erhalten und durchgelesen</div>
+              <div class="ab-links">
+                <a class="ab-link pdf" href="Lernplan_L14.pdf" target="_blank">📄 Lernplan (PDF)</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ab-item" data-id="e2">
+          <div class="ab-check-row">
+            <input type="checkbox" class="ab-check">
+            <div class="ab-text">
+              <div class="ab-title">Leitfrage eingeführt</div>
+              <div class="ab-sub">Bild von Romulus und Remus · Vorwissen aktivieren · Freiarbeit erklären</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="grammaticus-block lehrer-only">
+        <div class="grammaticus-icon">📝</div>
+        <div class="grammaticus-text">
+          <h4>Lehrerhinweis – Einstiegsstunde</h4>
+          <p>Zeigen Sie das bekannte Kapitolinische Wölfin-Bild oder die Statue. Sammeln Sie Vorwissen: <em>„Was wisst ihr über Romulus und Remus?"</em> Dann Leitfrage vorstellen, Laufzettel verteilen und das Freiarbeitsprinzip erklären. Hinweis: Phasen I–III bauen aufeinander auf; ab Phase IV ist freie Wahl möglich.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       PHASE I: DAS PqPf ENTDECKEN
+  ══════════════════════════════════════════════════════════ -->
+  <div class="phase-card ph1" id="ph1">
+    <div class="phase-header">
+      <div class="phase-num">I</div>
+      <div class="phase-title-block">
+        <div class="phase-title">Das Geheimnis der Vorzeit – Grammatik entdecken</div>
+        <div class="phase-desc">Plusquamperfekt entdecken · Formen erarbeiten · Beim Grammaticus absichern</div>
+        <div class="phase-progress-mini" id="prog-ph1"></div>
+      </div>
+      <div class="phase-toggle">▾</div>
+    </div>
+    <div class="phase-body">
+      <div class="section-label">Entdeckungsaufgaben</div>
+      <div class="ab-grid">
+        <div class="ab-item" data-id="ab02">
+          <div class="ab-check-row">
+            <input type="checkbox" class="ab-check">
+            <div class="ab-text">
+              <div class="ab-title">AB 2: Grammatik entdecken</div>
+              <div class="ab-sub">Plusquamperfekt-Formen selbst entdecken und analysieren</div>
+              <div class="ab-links">
+                <a class="ab-link pdf" href="AB_02_Grammatik_Entdeckung.pdf" target="_blank">📄 AB 2 (PDF)</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-label" style="margin-top:20px">Sicherung – Grammatik <span style="font-weight:normal;font-style:italic;">(wähle einen Weg)</span></div>
+
+      <!-- Wahl-Gruppe: 3a ODER 3b -->
+      <div class="choice-group">
+        <div class="choice-card profi">
+          <div class="choice-level">🔬 Weg A · Forscher-Profi</div>
+          <div class="choice-title">AB 3a: Sicherung – Grammatik</div>
+          <div class="choice-sub">Für Latein-Profis, die das PqPf selbstständig erschließen wollen. Keine Lückentexthilfe – du formulierst die Regel ganz allein.</div>
+          <div class="ab-links" style="margin-top:10px">
+            <a class="ab-link pdf" href="AB_03a_Sicherung.pdf" target="_blank">📄 AB 3a (PDF)</a>
+          </div>
+        </div>
+        <div class="choice-oder">ODER</div>
+        <div class="choice-card basis">
+          <div class="choice-level">🧭 Weg B · Mit Unterstützung</div>
+          <div class="choice-title">AB 3b: Sicherung – Grammatik</div>
+          <div class="choice-sub">Mit geführtem Lückentext, Wörterkasten und Schritt-für-Schritt-Erklärungen. Ideal, wenn du noch etwas Unterstützung brauchst.</div>
+          <div class="ab-links" style="margin-top:10px">
+            <a class="ab-link pdf" href="AB_03b_Sicherung.pdf" target="_blank">📄 AB 3b (PDF)</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Einzel-Haken für die Wahl -->
+      <div class="ab-grid" style="margin-top:12px; grid-template-columns: 1fr;">
+        <div class="ab-item" data-id="ab03-done" style="border-color: rgba(201,164,77,0.5); background: rgba(201,164,77,0.07);">
+          <div class="ab-check-row">
+            <input type="checkbox" class="ab-check">
+            <div class="ab-text">
+              <div class="ab-title">✓ Sicherung abgeschlossen</div>
+              <div class="ab-sub">Ich habe Weg A <em>oder</em> Weg B vollständig bearbeitet – und bin bereit für den Grammaticus.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grammaticus-block">
+        <div class="grammaticus-icon">🏛️</div>
+        <div class="grammaticus-text">
+          <h4>Besuch Nr. 1 beim Grammaticus</h4>
+          <p>Schüler kommen mit AB 3a oder 3b zum Lehrer → gemeinsame Besprechung und Freigabe für AB 4</p>
+        </div>
+      </div>
+
+      <div class="hinweis lehrer-only">
+        <strong>Differenzierung:</strong> Schüler wählen selbst zwischen Weg A (ohne Hilfe) und Weg B (geführt). Beide führen zum gleichen Lernziel. Beim Grammaticus-Besuch kurz erfragen, welchen Weg sie genommen haben.
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       PHASE II: DAS PqPf FESTIGEN
+  ══════════════════════════════════════════════════════════ -->
+  <div class="phase-card ph2" id="ph2">
+    <div class="phase-header">
+      <div class="phase-num">II</div>
+      <div class="phase-title-block">
+        <div class="phase-title">Das PqPf trainieren</div>
+        <div class="phase-desc">Formen üben · Zeitreihenfolge verstehen · Beim Grammaticus kontrollieren</div>
+        <div class="phase-progress-mini" id="prog-ph2"></div>
+      </div>
+      <div class="phase-toggle">▾</div>
+    </div>
+    <div class="phase-body">
+      <div class="ab-grid">
+        <div class="ab-item" data-id="ab04">
+          <div class="ab-check-row">
+            <input type="checkbox" class="ab-check">
+            <div class="ab-text">
+              <div class="ab-title">AB 4: Grammatik üben</div>
+              <div class="ab-sub">Zeitformen bestimmen · Zeitreihenfolge (1/2) markieren · Formen bilden</div>
+              <div class="ab-links">
+                <a class="ab-link pdf" href="AB_04_Grammatik_Ueben.pdf" target="_blank">📄 AB 4 (PDF)</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grammaticus-block">
+        <div class="grammaticus-icon">🏛️</div>
+        <div class="grammaticus-text">
+          <h4>Besuch Nr. 2 beim Grammaticus</h4>
+          <p>Schüler zeigen AB 4 → Kontrolle der Lösungen → Freigabe für Phase III</p>
+        </div>
+      </div>
+
+      <div class="hinweis lehrer-only">
+        <strong>Tipp:</strong> Besonderes Augenmerk auf Aufgabe 1 (Zeitformen erkennen) und Aufgabe 2 (Zeitreihenfolge 1/2 markieren). Futur I-Formen in der Tabelle gezielt besprechen.
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       PHASE III: VOKABELN & VORBEREITUNG
+  ══════════════════════════════════════════════════════════ -->
+  <div class="phase-card ph3" id="ph3">
+    <div class="phase-header">
+      <div class="phase-num">III</div>
+      <div class="phase-title-block">
+        <div class="phase-title">Wörter & Wege – Vorbereitung auf die Sage</div>
+        <div class="phase-desc">Neue Vokabeln entdecken · Bingo · Text vorbereiten · Arbeitsplatz ordnen</div>
+        <div class="phase-progress-mini" id="prog-ph3"></div>
+      </div>
+      <div class="phase-toggle">▾</div>
+    </div>
+    <div class="phase-body">
+      <div class="ab-grid">
+        <div class="ab-item" data-id="ab05">
+          <div class="ab-check-row">
+            <input type="checkbox" class="ab-check">
+            <div class="ab-text">
+              <div class="ab-title">AB 5: Wortschatz-Werkstatt</div>
+              <div class="ab-sub">Neue Vokabeln mit Merkhilfen entdecken · Vokabel-Bingo zur Wiederholung</div>
+              <div class="ab-links">
+                <a class="ab-link pdf" href="AB_05_Vokabeln.pdf" target="_blank">📄 AB 5 (PDF)</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ab-item" data-id="ab06">
+          <div class="ab-check-row">
+            <input type="checkbox" class="ab-check">
+            <div class="ab-text">
+              <div class="ab-title">AB 6: Textvorbereitung</div>
+              <div class="ab-sub">Wortschatz und Strukturen des Lektionstexts erschließen</div>
+              <div class="ab-links">
+                <a class="ab-link pdf" href="AB_06_Textvorbereitung.pdf" target="_blank">📄 AB 6 (PDF)</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ab-item" data-id="ab07">
+          <div class="ab-check-row">
+            <input type="checkbox" class="ab-check">
+            <div class="ab-text">
+              <div class="ab-title">AB 7: Eigener Arbeitsplatz ordnen</div>
+              <div class="ab-sub">Alle Materialien sortieren – bereit für die Übersetzung!</div>
+              <div class="ab-links">
+                <a class="ab-link pdf" href="AB_07_Arbeitsplatz.pdf" target="_blank">📄 AB 7 (PDF)</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hinweis">
+        💡 <strong>Tipp:</strong> AB 5, 6 und 7 können in freier Reihenfolge bearbeitet werden. AB 7 markiert die Bereitschaft für die Übersetzungsphase.
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       PHASE IV: DIE SAGE ÜBERSETZEN
+  ══════════════════════════════════════════════════════════ -->
+  <div class="phase-card ph4" id="ph4">
+    <div class="phase-header">
+      <div class="phase-num">IV</div>
+      <div class="phase-title-block">
+        <div class="phase-title">Die Sage übersetzen</div>
+        <div class="phase-desc">Rōmulus et Remus übersetzen · Vergleichen · Korrektur wählen</div>
+        <div class="phase-progress-mini" id="prog-ph4"></div>
+      </div>
+      <div class="phase-toggle">▾</div>
+    </div>
+    <div class="phase-body">
+      <div class="section-label">Übersetzung – wähle deinen Weg</div>
+      <div class="ab-grid">
+        <div class="ab-item" data-id="ab08a">
+          <div class="ab-check-row">
+            <input type="checkbox" class="ab-check">
+            <div class="ab-text">
+              <div class="ab-title">AB 8: Übersetzung (viele Hilfen)</div>
+              <div class="ab-sub">Mit Vokabelangaben, Konstruktionshilfen und Satzanalyse</div>
+              <div class="ab-links">
+                <a class="ab-link pdf" href="AB_08_Uebersetzung_vielHilfen.pdf" target="_blank">📄 Viele Hilfen</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ab-item" data-id="ab08b">
+          <div class="ab-check-row">
+            <input type="checkbox" class="ab-check">
+            <div class="ab-text">
+              <div class="ab-title">AB 8: Übersetzung (wenig Hilfen)</div>
+              <div class="ab-sub">Mit einzelnen Vokabelangaben – für Fortgeschrittene</div>
+              <div class="ab-links">
+                <a class="ab-link pdf" href="AB_08_Uebersetzung_wenigHilfen.pdf" target="_blank">📄 Wenig Hilfen</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ab-item" data-id="ab08c">
+          <div class="ab-check-row">
+            <input type="checkbox" class="ab-check">
+            <div class="ab-text">
+              <div class="ab-title">AB 8: Übersetzung (ohne Hilfen)</div>
+              <div class="ab-sub">Nur der lateinische Text – für selbstständige Übersetzer</div>
+              <div class="ab-links">
+                <a class="ab-link pdf" href="AB_08_Uebersetzung_ohneHilfen.pdf" target="_blank">📄 Ohne Hilfen</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ab-item" data-id="textblatt">
+          <div class="ab-check-row">
+            <input type="checkbox" class="ab-check">
+            <div class="ab-text">
+              <div class="ab-title">Textblatt L. 14</div>
+              <div class="ab-sub">Lateinischer Text mit großem Zeilenabstand – je ein Satz pro Zeile</div>
+              <div class="ab-links">
+                <a class="ab-link pdf" href="AB_12_Textblatt_grosserZeilenabstand.pdf" target="_blank">📄 Textblatt</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grammaticus-block">
+        <div class="grammaticus-icon">🏛️</div>
+        <div class="grammaticus-text">
+          <h4>Besuch Nr. 3 beim Grammaticus</h4>
+          <p>Schüler zeigen ihre fertige Übersetzung → individuelle Rückmeldung → Freigabe für den Übersetzungsvergleich</p>
+        </div>
+      </div>
+
+      <div class="section-label" style="margin-top:20px">Übersetzungsvergleich & Korrektur</div>
+      <div class="ab-grid">
+        <div class="ab-item" data-id="ab09">
+          <div class="ab-check-row">
+            <input type="checkbox" class="ab-check">
+            <div class="ab-text">
+              <div class="ab-title">AB 9: Übersetzungsvergleich</div>
+              <div class="ab-sub">Eigene Übersetzung mit anderen vergleichen · Korrekturweg wählen (⭐ bis ⭐⭐⭐⭐)</div>
+              <div class="ab-links">
+                <a class="ab-link pdf" href="AB_09_Uebersetzungsvergleich.pdf" target="_blank">📄 AB 9 (PDF)</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hinweis">
+        💡 <strong>Hinweis:</strong> Wähle <em>einen</em> der drei Übersetzungswege (viele / wenig / ohne Hilfen). Nach der Übersetzung zum Grammaticus – dann AB 9 für den Vergleich.
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       PHASE V: ABSCHLUSS & VERTIEFUNG
+  ══════════════════════════════════════════════════════════ -->
+  <div class="phase-card ph5" id="ph5">
+    <div class="phase-header">
+      <div class="phase-num">V</div>
+      <div class="phase-title-block">
+        <div class="phase-title">Die Leitfrage beantworten – und die Sage deuten</div>
+        <div class="phase-desc">Zeitstrahl · Vertiefungsaufgaben (freie Wahl) · Lernrückblick</div>
+        <div class="phase-progress-mini" id="prog-ph5"></div>
+      </div>
+      <div class="phase-toggle">▾</div>
+    </div>
+    <div class="phase-body">
+
+      <div class="section-label">Zuerst: Leitfrage beantworten</div>
+      <div class="ab-grid">
+        <div class="ab-item" data-id="ab11a">
+          <div class="ab-check-row">
+            <input type="checkbox" class="ab-check">
+            <div class="ab-text">
+              <div class="ab-title">AB 11a: Abschluss – Leitfrage</div>
+              <div class="ab-sub">Eigenen Zeitstrahl zeichnen · Plusquamperfekt in eigenen Worten erklären</div>
+              <div class="ab-links">
+                <a class="ab-link pdf" href="AB_11a_Abschluss.pdf" target="_blank">📄 AB 11a (PDF)</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-label" style="margin-top:20px">Vertiefung – freie Wahl (mind. eine Aufgabe)</div>
+      <div class="ab-grid">
+        <div class="ab-item" data-id="ab10a">
+          <div class="ab-check-row">
+            <input type="checkbox" class="ab-check">
+            <div class="ab-text">
+              <div class="ab-title">AB 10a: Standbild &amp; Bericht</div>
+              <div class="ab-sub">Die Schlüsselszene als Standbild darstellen und beschreiben</div>
+              <div class="ab-links">
+                <a class="ab-link pdf" href="AB_10a_Standbild_Bericht.pdf" target="_blank">📄 Aufgabe</a>
+                <a class="ab-link lsg" href="AB_10a_Loesung.pdf" target="_blank">✓ Lösung</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ab-item" data-id="ab10b">
+          <div class="ab-check-row">
+            <input type="checkbox" class="ab-check">
+            <div class="ab-text">
+              <div class="ab-title">AB 10b: Gerichtsverhandlung</div>
+              <div class="ab-sub">War Romulus schuldig? – Spontanes Rollenspiel vor der Klasse</div>
+              <div class="ab-links">
+                <a class="ab-link pdf" href="AB_10b_Gerichtsverhandlung.pdf" target="_blank">📄 Aufgabe</a>
+                <a class="ab-link lsg" href="AB_10b_Loesung.pdf" target="_blank">✓ Lösung</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ab-item" data-id="ab10c">
+          <div class="ab-check-row">
+            <input type="checkbox" class="ab-check">
+            <div class="ab-text">
+              <div class="ab-title">AB 10c: FAKE NEWS? – Sage &amp; Wirklichkeit</div>
+              <div class="ab-sub">Was stimmt – und was ist erfunden? Sage und Geschichte vergleichen</div>
+              <div class="ab-links">
+                <a class="ab-link pdf" href="AB_10c_Sage_und_Wirklichkeit.pdf" target="_blank">📄 Aufgabe</a>
+                <a class="ab-link lsg" href="AB_10c_Loesung.pdf" target="_blank">✓ Lösung</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hinweis">
+        💡 <strong>Freie Wahl:</strong> Bearbeite mindestens <strong>eine</strong> der drei Vertiefungsaufgaben (AB 10a, 10b oder 10c). Wer Zeit hat, kann alle drei bearbeiten.
+      </div>
+
+      <div class="section-label" style="margin-top:20px">Zum Schluss: Lernrückblick</div>
+      <div class="ab-grid">
+        <div class="ab-item" data-id="ab11b">
+          <div class="ab-check-row">
+            <input type="checkbox" class="ab-check">
+            <div class="ab-text">
+              <div class="ab-title">AB 11b: Lernrückblick</div>
+              <div class="ab-sub">Lernprozess reflektieren · Stärken und Schwächen benennen · Partnerfeedback</div>
+              <div class="ab-links">
+                <a class="ab-link pdf" href="AB_11b_Lernrückblick.pdf" target="_blank">📄 AB 11b (PDF)</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grammaticus-block lehrer-only">
+        <div class="grammaticus-icon">📝</div>
+        <div class="grammaticus-text">
+          <h4>Lehrerhinweis – Abschlussstunde</h4>
+          <p>Schüler präsentieren ihre Antworten auf die Leitfrage. Mögliche Formate: kurze mündliche Präsentation (2–3 Min.), strukturierter Hefteintrag, Plakat. Bei AB 10b das spontane Rollenspiel durchführen. Abschließend Lernrückblick AB 11b (5–8 Min.).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       ALLE MATERIALIEN (ÜBERSICHT)
+  ══════════════════════════════════════════════════════════ -->
+  <div class="phase-card" id="phMat" style="border-color: rgba(201,164,77,0.5);">
+    <div class="phase-header" style="border-left: 5px solid var(--gold);">
+      <div class="phase-num" style="background: #6B5B10; font-size: 1rem;">📂</div>
+      <div class="phase-title-block">
+        <div class="phase-title">Alle Materialien – Schnellzugriff</div>
+        <div class="phase-desc">Sämtliche PDFs der Einheit im Überblick</div>
+      </div>
+      <div class="phase-toggle">▾</div>
+    </div>
+    <div class="phase-body">
+      <div class="ab-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));">
+
+        <div style="padding:10px 0; font-size:0.82rem;">
+          <div class="section-label" style="margin-top:4px">Lernplanung</div>
+          <a class="ab-link pdf" href="Lernplan_L14.pdf" target="_blank">📄 Lernplan</a>
+          <div style="margin-top:6px"><a class="ab-link pdf" href="L14_Gesamteinheit_alle_ABs.pdf" target="_blank">📄 Alle ABs (Gesamt-PDF)</a></div>
+        </div>
+
+        <div style="padding:10px 0; font-size:0.82rem;">
+          <div class="section-label" style="margin-top:4px">Grammatik</div>
+          <a class="ab-link pdf" href="AB_02_Grammatik_Entdeckung.pdf" target="_blank">📄 AB 2 Entdeckung</a>
+          <div style="margin-top:6px"><a class="ab-link pdf" href="AB_03a_Sicherung.pdf" target="_blank">📄 AB 3a Sicherung</a></div>
+          <div style="margin-top:6px"><a class="ab-link pdf" href="AB_03b_Sicherung.pdf" target="_blank">📄 AB 3b Sicherung</a></div>
+          <div style="margin-top:6px"><a class="ab-link pdf" href="AB_04_Grammatik_Ueben.pdf" target="_blank">📄 AB 4 Üben</a></div>
+        </div>
+
+        <div style="padding:10px 0; font-size:0.82rem;">
+          <div class="section-label" style="margin-top:4px">Vokabeln &amp; Vorbereitung</div>
+          <a class="ab-link pdf" href="AB_05_Vokabeln.pdf" target="_blank">📄 AB 5 Vokabeln</a>
+          <div style="margin-top:6px"><a class="ab-link pdf" href="AB_06_Textvorbereitung.pdf" target="_blank">📄 AB 6 Textvorbereitung</a></div>
+          <div style="margin-top:6px"><a class="ab-link pdf" href="AB_07_Arbeitsplatz.pdf" target="_blank">📄 AB 7 Arbeitsplatz</a></div>
+        </div>
+
+        <div style="padding:10px 0; font-size:0.82rem;">
+          <div class="section-label" style="margin-top:4px">Übersetzung</div>
+          <a class="ab-link pdf" href="AB_08_Uebersetzung_vielHilfen.pdf" target="_blank">📄 AB 8 viele Hilfen</a>
+          <div style="margin-top:6px"><a class="ab-link pdf" href="AB_08_Uebersetzung_wenigHilfen.pdf" target="_blank">📄 AB 8 wenig Hilfen</a></div>
+          <div style="margin-top:6px"><a class="ab-link pdf" href="AB_08_Uebersetzung_ohneHilfen.pdf" target="_blank">📄 AB 8 ohne Hilfen</a></div>
+          <div style="margin-top:6px"><a class="ab-link pdf" href="AB_12_Textblatt_grosserZeilenabstand.pdf" target="_blank">📄 Textblatt</a></div>
+          <div style="margin-top:6px"><a class="ab-link pdf" href="AB_09_Uebersetzungsvergleich.pdf" target="_blank">📄 AB 9 Vergleich</a></div>
+        </div>
+
+        <div style="padding:10px 0; font-size:0.82rem;">
+          <div class="section-label" style="margin-top:4px">Abschluss &amp; Vertiefung</div>
+          <a class="ab-link pdf" href="AB_11a_Abschluss.pdf" target="_blank">📄 AB 11a Leitfrage</a>
+          <div style="margin-top:6px"><a class="ab-link pdf" href="AB_10a_Standbild_Bericht.pdf" target="_blank">📄 AB 10a Standbild</a></div>
+          <div style="margin-top:6px"><a class="ab-link pdf" href="AB_10b_Gerichtsverhandlung.pdf" target="_blank">📄 AB 10b Gericht</a></div>
+          <div style="margin-top:6px"><a class="ab-link pdf" href="AB_10c_Sage_und_Wirklichkeit.pdf" target="_blank">📄 AB 10c FAKE NEWS?</a></div>
+          <div style="margin-top:6px"><a class="ab-link pdf" href="AB_11b_Lernrückblick.pdf" target="_blank">📄 AB 11b Rückblick</a></div>
+        </div>
+
+        <div style="padding:10px 0; font-size:0.82rem;">
+          <div class="section-label" style="margin-top:4px">Lösungen</div>
+          <a class="ab-link lsg" href="AB_10a_Loesung.pdf" target="_blank">✓ 10a Lsg.</a>
+          <div style="margin-top:6px"><a class="ab-link lsg" href="AB_10b_Loesung.pdf" target="_blank">✓ 10b Lsg.</a></div>
+          <div style="margin-top:6px"><a class="ab-link lsg" href="AB_10c_Loesung.pdf" target="_blank">✓ 10c Lsg.</a></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+// ─── REIHENFOLGE DER PHASEN ──────────────────────────────
+var PHASE_ORDER = ['ph0','ph1','ph2','ph3','ph4','ph5'];
+var KEY = 'latein_l14_progress';
+
+// ─── PHASE TOGGLE ────────────────────────────────────────
+function togglePhase(id) {
+  var card = document.getElementById(id);
+  if (!card) return;
+  var body = card.querySelector('.phase-body');
+  if (!body) return;
+  var arrow = card.querySelector('.phase-toggle');
+  var isOpen = (window.getComputedStyle(body).display !== 'none');
+  if (isOpen) {
+    body.style.display = 'none';
+    card.classList.remove('open');
+    if (arrow) arrow.style.transform = '';
+  } else {
+    body.style.display = 'block';
+    card.classList.add('open');
+    if (arrow) arrow.style.transform = 'rotate(180deg)';
+  }
+}
+
+// ─── FORTSCHRITT ─────────────────────────────────────────
+function loadProgress() {
+  try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e) { return {}; }
+}
+function saveProgress(data) {
+  try { localStorage.setItem(KEY, JSON.stringify(data)); } catch(e) {}
+}
+
+function updateCheck(checkbox, id) {
+  var data = loadProgress();
+  data[id] = checkbox.checked;
+  saveProgress(data);
+  var item = document.querySelector('[data-id="' + id + '"]');
+  if (item) item.classList.toggle('done', checkbox.checked);
+  updateProgressBar();
+  updatePhaseProgress();
+  updateLocks();
+}
+
+function updateProgressBar() {
+  var all = document.querySelectorAll('.ab-check');
+  var done = document.querySelectorAll('.ab-check:checked');
+  var pct = all.length ? (done.length / all.length * 100) : 0;
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressCount').textContent = done.length + ' / ' + all.length;
+}
+
+function updatePhaseProgress() {
+  for (var p = 0; p < PHASE_ORDER.length; p++) {
+    var phId = PHASE_ORDER[p];
+    var card = document.getElementById(phId);
+    if (!card) continue;
+    var all = card.querySelectorAll('.ab-check');
+    var done = card.querySelectorAll('.ab-check:checked');
+    var el = document.getElementById('prog-' + phId);
+    if (el && all.length) {
+      el.textContent = done.length + ' von ' + all.length + ' erledigt';
+    }
+  }
+}
+
+// ─── SPERR-LOGIK ─────────────────────────────────────────
+function isPhaseComplete(phId) {
+  var card = document.getElementById(phId);
+  if (!card) return true;
+  var all = card.querySelectorAll('.ab-check');
+  if (!all.length) return true;
+  return card.querySelectorAll('.ab-check:checked').length === all.length;
+}
+
+function updateLocks() {
+  var lehrerModus = document.body.classList.contains('lehrer-modus');
+  for (var i = 0; i < PHASE_ORDER.length; i++) {
+    var phId = PHASE_ORDER[i];
+    var card = document.getElementById(phId);
+    if (!card) continue;
+    var phaseUnlocked = lehrerModus || i === 0 || isPhaseComplete(PHASE_ORDER[i - 1]);
+    var hint = card.querySelector('.unlock-hint');
+    if (!phaseUnlocked) {
+      if (!hint) {
+        hint = document.createElement('div');
+        hint.className = 'unlock-hint';
+        var tb = card.querySelector('.phase-title-block');
+        if (tb) tb.appendChild(hint);
+      }
+      hint.textContent = '🔒 Erst freigegeben wenn Phase ' + (i) + ' vollständig ist';
+    } else {
+      if (hint) hint.parentNode.removeChild(hint);
+    }
+    var items = card.querySelectorAll('[data-id]');
+    for (var j = 0; j < items.length; j++) {
+      var cb = items[j].querySelector('.ab-check');
+      if (!cb) continue;
+      var disable;
+      if (lehrerModus) {
+        disable = false;
+      } else if (!phaseUnlocked) {
+        disable = true;
+      } else {
+        if (j === 0) {
+          disable = false;
+        } else {
+          var prevCb = items[j - 1].querySelector('.ab-check');
+          disable = prevCb ? !prevCb.checked : false;
+        }
+      }
+      cb.disabled = disable;
+      if (disable && !cb.checked) {
+        items[j].classList.add('item-locked');
+      } else {
+        items[j].classList.remove('item-locked');
+      }
+    }
+  }
+}
+
+function resetProgress() {
+  if (!confirm('Fortschritt wirklich zurücksetzen?')) return;
+  try { localStorage.removeItem(KEY); } catch(e) {}
+  var cbs = document.querySelectorAll('.ab-check');
+  for (var i = 0; i < cbs.length; i++) { cbs[i].checked = false; }
+  var its = document.querySelectorAll('.ab-item');
+  for (var i = 0; i < its.length; i++) { its[i].classList.remove('done'); }
+  updateProgressBar();
+  updatePhaseProgress();
+  updateLocks();
+}
+
+function restoreProgress() {
+  var data = loadProgress();
+  var items = document.querySelectorAll('[data-id]');
+  for (var i = 0; i < items.length; i++) {
+    var id = items[i].dataset.id;
+    var cb = items[i].querySelector('.ab-check');
+    if (cb && data[id]) {
+      cb.checked = true;
+      items[i].classList.add('done');
+    }
+  }
+  updateProgressBar();
+  updatePhaseProgress();
+  updateLocks();
+}
+
+function setView(mode) {
+  document.body.classList.toggle('lehrer-modus', mode === 'lehrer');
+  document.getElementById('btnLehrer').classList.toggle('active', mode === 'lehrer');
+  document.getElementById('btnSchueler').classList.toggle('active', mode === 'schueler');
+  try { localStorage.setItem('latein_l14_view', mode); } catch(e) {}
+  updateLocks();
+}
+
+// ─── INIT ────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+  var headers = document.querySelectorAll('.phase-header');
+  for (var h = 0; h < headers.length; h++) {
+    (function(hdr) {
+      hdr.addEventListener('click', function() {
+        var card = hdr.parentElement;
+        if (card) togglePhase(card.id);
+      });
+    })(headers[h]);
+  }
+
+  var btnS = document.getElementById('btnSchueler');
+  var btnL = document.getElementById('btnLehrer');
+  var btnR = document.getElementById('btnReset');
+  if (btnS) btnS.addEventListener('click', function() { setView('schueler'); });
+  if (btnL) btnL.addEventListener('click', function() { setView('lehrer'); });
+  if (btnR) btnR.addEventListener('click', resetProgress);
+
+  var cbs = document.querySelectorAll('.ab-check');
+  for (var c = 0; c < cbs.length; c++) {
+    (function(cb) {
+      cb.addEventListener('change', function() {
+        var item = cb.closest('[data-id]');
+        if (item) updateCheck(cb, item.dataset.id);
+      });
+    })(cbs[c]);
+  }
+
+  // Alle Phasen schließen außer Phase 0
+  var allCards = document.querySelectorAll('.phase-card');
+  for (var i = 0; i < allCards.length; i++) {
+    var body = allCards[i].querySelector('.phase-body');
+    var arrow = allCards[i].querySelector('.phase-toggle');
+    if (body) body.style.display = 'none';
+    allCards[i].classList.remove('open');
+    if (arrow) arrow.style.transform = '';
+  }
+  var ph0 = document.getElementById('ph0');
+  if (ph0) {
+    var ph0body = ph0.querySelector('.phase-body');
+    var ph0arrow = ph0.querySelector('.phase-toggle');
+    if (ph0body) ph0body.style.display = 'block';
+    ph0.classList.add('open');
+    if (ph0arrow) ph0arrow.style.transform = 'rotate(180deg)';
+  }
+
+  var savedView = 'schueler';
+  try { savedView = localStorage.getItem('latein_l14_view') || 'schueler'; } catch(e) {}
+  setView(savedView);
+  restoreProgress();
+});
+</script>
+</body>
+</html>
