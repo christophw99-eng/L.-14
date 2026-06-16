@@ -545,6 +545,40 @@
   }
   .video-card-link:hover { background: rgba(201,164,77,0.07); }
   .video-card-link-icon { font-size: 1.6rem; flex-shrink: 0; }
+
+  /* ─── ONLINE-SPIELE (PAUSE) ──────────────────────────────── */
+  .game-card {
+    background: linear-gradient(135deg, #1A2A1A, #0F1F0F);
+    border: 1px solid rgba(90,160,90,0.3);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+  .game-card-header {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px; border-bottom: 1px solid rgba(90,160,90,0.2);
+  }
+  .game-card-icon { font-size: 1.3rem; flex-shrink: 0; }
+  .game-card-title { font-weight: bold; color: #A0D4A0; font-size: 0.88rem; line-height: 1.3; }
+  .game-card-sub { font-size: 0.76rem; color: #6A9A6A; margin-top: 2px; }
+  .game-fullscreen-btn {
+    margin-left: auto; padding: 4px 12px; flex-shrink: 0;
+    border: 1px solid rgba(90,160,90,0.5); border-radius: 20px;
+    color: #90C890; font-size: 0.74rem; text-decoration: none;
+    white-space: nowrap; transition: background 0.2s;
+  }
+  .game-fullscreen-btn:hover { background: rgba(90,160,90,0.15); }
+  .game-card iframe { width: 100%; height: 380px; border: none; display: block; }
+  .pause-hinweis {
+    background: rgba(90,160,90,0.08);
+    border: 1px solid rgba(90,160,90,0.3);
+    border-radius: 8px;
+    padding: 14px 18px;
+    color: #7AAA7A;
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
 </style>
 </head>
 <body>
@@ -1041,6 +1075,109 @@
           <p>Schüler präsentieren ihre Antworten auf die Leitfrage. Mögliche Formate: kurze mündliche Präsentation (2–3 Min.), strukturierter Hefteintrag, Plakat. Bei AB 10b das spontane Rollenspiel durchführen. Abschließend Lernrückblick AB 11b (5–8 Min.).</p>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       PAUSE & ONLINE-SPIELE (LearningApps)
+  ══════════════════════════════════════════════════════════ -->
+  <div class="phase-card" id="phPause" style="border-color: rgba(90,160,90,0.4);">
+    <div class="phase-header" style="border-left: 5px solid #4A8A4A;">
+      <div class="phase-num" style="background: #1E3A1E; font-size: 1.4rem; line-height:1;">☕</div>
+      <div class="phase-title-block">
+        <div class="phase-title" style="color:#A0D4A0">Pause &amp; Online-Spiele</div>
+        <div class="phase-desc" style="color:#6A9A6A">Jederzeit verfügbar · Lernen mit Spaß · LearningApps.org</div>
+      </div>
+      <div class="phase-toggle" style="color:#6A9A6A">▾</div>
+    </div>
+    <div class="phase-body" style="display:none;">
+
+      <div class="pause-hinweis">
+        🎮 Diese Online-Übungen kannst du <strong>jederzeit</strong> bearbeiten – als kleine Pause zwischen den Phasen oder wenn du früher fertig bist. Sie zählen nicht im Fortschrittsbalken, aber du übst dabei echte Lateingrammatik und Vokabeln. <em>Viel Spaß!</em>
+      </div>
+
+      <div class="section-label" style="color:#6A9A6A; border-color: rgba(90,160,90,0.3); margin-top:4px;">🎯 Plusquamperfekt gezielt üben</div>
+
+      <!-- PqPf-Übung 1: prolatein.de Lückenaufgabe -->
+      <div class="game-card">
+        <div class="game-card-header">
+          <span class="game-card-icon">✏️</span>
+          <div>
+            <div class="game-card-title">Lückenaufgabe: Präs. · Impf. · Perf. · <strong style="color:#C8E8C8">Plqperf.</strong></div>
+            <div class="game-card-sub">Setze die richtige Verbform ein – inkl. Plusquamperfekt · Kap. 1–13 · prolatein.de</div>
+          </div>
+          <a class="game-fullscreen-btn" href="https://prolatein.de/HotPotatoes/Uebungen/tempora1-13_Luecken.htm" target="_blank" rel="noopener">⤢ Öffnen</a>
+        </div>
+        <iframe src="https://prolatein.de/HotPotatoes/Uebungen/tempora1-13_Luecken.htm" loading="lazy" title="Lückenaufgabe Tempora inkl. Plusquamperfekt" style="height:420px;"></iframe>
+      </div>
+
+      <!-- PqPf-Übung 2: prolatein.de Einsetzen -->
+      <div class="game-card">
+        <div class="game-card-header">
+          <span class="game-card-icon">🔡</span>
+          <div>
+            <div class="game-card-title">Einsetzen: Präs. · Impf. · Perf. · <strong style="color:#C8E8C8">Plqperf.</strong></div>
+            <div class="game-card-sub">Wähle die korrekte Zeitform aus – inkl. Plusquamperfekt · Kap. 1–13 · prolatein.de</div>
+          </div>
+          <a class="game-fullscreen-btn" href="https://prolatein.de/HotPotatoes/Uebungen/verben1-13.htm" target="_blank" rel="noopener">⤢ Öffnen</a>
+        </div>
+        <iframe src="https://prolatein.de/HotPotatoes/Uebungen/verben1-13.htm" loading="lazy" title="Einsetzen Tempora inkl. Plusquamperfekt" style="height:420px;"></iframe>
+      </div>
+
+      <!-- PqPf-Übung 3: prolatein.de Lückenaufgabe Kap. 1-17 -->
+      <div class="game-card">
+        <div class="game-card-header">
+          <span class="game-card-icon">📋</span>
+          <div>
+            <div class="game-card-title">Erweiterte Zeitformenübung inkl. Futur I &amp; <strong style="color:#C8E8C8">Plqperf.</strong></div>
+            <div class="game-card-sub">Alle Tempora des Indikativs – für Schnelle und Ehrgeizige · Kap. 1–17 · prolatein.de</div>
+          </div>
+          <a class="game-fullscreen-btn" href="https://prolatein.de/HotPotatoes/Uebungen/tempora1-17_Luecken.htm" target="_blank" rel="noopener">⤢ Öffnen</a>
+        </div>
+        <iframe src="https://prolatein.de/HotPotatoes/Uebungen/tempora1-17_Luecken.htm" loading="lazy" title="Lückenaufgabe alle Tempora inkl. PqPf" style="height:420px;"></iframe>
+      </div>
+
+      <div class="section-label" style="color:#6A9A6A; border-color: rgba(90,160,90,0.3); margin-top:16px;">🎮 Spiele &amp; Rätsel</div>
+
+      <!-- Spiel 1: Gründungssage Reihenfolge -->
+      <div class="game-card">
+        <div class="game-card-header">
+          <span class="game-card-icon">🏛️</span>
+          <div>
+            <div class="game-card-title">Gründungssage – Reihenfolge</div>
+            <div class="game-card-sub">Die Geschichte von Romulus &amp; Remus in die richtige Reihenfolge bringen</div>
+          </div>
+          <a class="game-fullscreen-btn" href="https://learningapps.org/view7251566?allowFullscreen=1" target="_blank" rel="noopener">⤢ Vollbild</a>
+        </div>
+        <iframe src="https://learningapps.org/view7251566?allowFullscreen=1" allowfullscreen loading="lazy" title="Gründungssage Rom – Romulus und Remus"></iframe>
+      </div>
+
+      <!-- Spiel 2: Lateinische Tempora (PqPf erkennen) -->
+      <div class="game-card">
+        <div class="game-card-header">
+          <span class="game-card-icon">⏳</span>
+          <div>
+            <div class="game-card-title">Lateinische Tempora erkennen</div>
+            <div class="game-card-sub">Präsens · Imperfekt · Perfekt · <strong style="color:#C8E8C8">Plusquamperfekt</strong> – welche Form ist es?</div>
+          </div>
+          <a class="game-fullscreen-btn" href="https://learningapps.org/301962" target="_blank" rel="noopener">⤢ Vollbild</a>
+        </div>
+        <iframe src="https://learningapps.org/watch.php?v=o2d4vtpj&allowFullscreen=1" allowfullscreen loading="lazy" title="Lateinische Tempora: Präsens, Imperfekt, Perfekt, Plusquamperfekt"></iframe>
+      </div>
+
+      <!-- Spiel 3: Latein üben mit Spaß -->
+      <div class="game-card">
+        <div class="game-card-header">
+          <span class="game-card-icon">🔍</span>
+          <div>
+            <div class="game-card-title">Latein üben mit Spaß</div>
+            <div class="game-card-sub">Lateinische Wörter finden – Wortschatz spielerisch festigen</div>
+          </div>
+          <a class="game-fullscreen-btn" href="https://learningapps.org/1955423" target="_blank" rel="noopener">⤢ Vollbild</a>
+        </div>
+        <iframe src="https://learningapps.org/watch.php?v=p8a6aj40t15&allowFullscreen=1" allowfullscreen loading="lazy" title="Latein üben mit Spaß"></iframe>
+      </div>
+
     </div>
   </div>
 
