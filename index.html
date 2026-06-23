@@ -579,6 +579,260 @@
     margin-bottom: 16px;
     line-height: 1.5;
   }
+
+  /* ─── VERBARIUM VOKABELSPIEL ─────────────────────────────── */
+  .verbarium-wrap { padding: 8px 0 4px; }
+  .voc-mode-row { display:flex; gap:10px; margin-bottom:16px; }
+  .voc-mode-btn {
+    padding: 7px 20px; border-radius: 20px;
+    border: 1.5px solid rgba(201,164,77,0.4);
+    background: transparent; color: var(--gold);
+    font-size: 0.82rem; cursor: pointer;
+    transition: all 0.2s; font-family: 'Georgia', serif;
+  }
+  .voc-mode-btn.active { background: var(--gold); color: var(--stein); font-weight: bold; }
+
+  /* Karteikarte */
+  .voc-scene {
+    perspective: 900px; height: 160px;
+    margin: 0 auto 14px; max-width: 460px; cursor: pointer;
+  }
+  .voc-inner {
+    width: 100%; height: 100%; position: relative;
+    transform-style: preserve-3d; transition: transform 0.4s ease;
+  }
+  .voc-inner.flipped { transform: rotateY(180deg); }
+  .voc-face {
+    position: absolute; inset: 0; backface-visibility: hidden;
+    border-radius: 10px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 20px; text-align: center;
+  }
+  .voc-front {
+    background: linear-gradient(135deg, #2A1A0A, #3D2510);
+    border: 2px solid var(--gold);
+  }
+  .voc-back {
+    background: linear-gradient(135deg, #0A2410, #153D20);
+    border: 2px solid #6AAA6A;
+    transform: rotateY(180deg);
+  }
+  .voc-lat { font-size: 1.3rem; color: var(--gold-hell); font-style: italic; margin-bottom: 6px; line-height: 1.3; }
+  .voc-tip { font-size: 0.74rem; color: rgba(201,164,77,0.55); }
+  .voc-ger { font-size: 1.2rem; color: #9ADA9A; font-weight: bold; line-height: 1.35; }
+
+  .voc-nav-row {
+    display: flex; align-items: center; justify-content: center;
+    gap: 14px; margin-bottom: 8px;
+  }
+  .voc-nav-btn {
+    padding: 6px 16px; border-radius: 20px;
+    border: 1.5px solid rgba(201,164,77,0.4);
+    background: transparent; color: var(--gold);
+    font-size: 0.82rem; cursor: pointer;
+    transition: all 0.2s; font-family: 'Georgia', serif;
+  }
+  .voc-nav-btn:hover { background: rgba(201,164,77,0.15); }
+  .voc-counter { color: var(--gold); font-size: 0.82rem; min-width: 55px; text-align: center; }
+  .voc-shuffle {
+    display: block; margin: 0 auto 4px; padding: 5px 14px;
+    border-radius: 14px; border: 1px solid rgba(201,164,77,0.35);
+    background: transparent; color: rgba(201,164,77,0.7);
+    font-size: 0.74rem; cursor: pointer; font-family: 'Georgia', serif;
+    transition: all 0.2s;
+  }
+  .voc-shuffle:hover { color: var(--gold); border-color: var(--gold); }
+
+  /* Quiz */
+  .voc-quiz-q {
+    background: linear-gradient(135deg, #2A1A0A, #3D2510);
+    border: 2px solid var(--gold); border-radius: 10px;
+    padding: 20px; text-align: center; margin-bottom: 14px;
+    font-size: 1.25rem; color: var(--gold-hell); font-style: italic;
+    min-height: 72px; display: flex; align-items: center; justify-content: center;
+    line-height: 1.4;
+  }
+  .voc-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+  .voc-opt {
+    padding: 11px 12px; border-radius: 8px;
+    border: 1.5px solid rgba(201,164,77,0.3);
+    background: var(--weiss); color: var(--stein);
+    font-size: 0.87rem; cursor: pointer; transition: all 0.2s;
+    font-family: 'Georgia', serif; text-align: center; line-height: 1.3;
+  }
+  .voc-opt:hover:not(:disabled) { border-color: var(--gold); background: rgba(201,164,77,0.1); }
+  .voc-opt.correct { background: #E0F4E0; border-color: #4A9E4A; color: #1E5A1E; font-weight: bold; }
+  .voc-opt.wrong   { background: #F4E0E0; border-color: #9E4A4A; color: #5A1E1E; }
+  .voc-opt:disabled { cursor: default; }
+  .voc-score-row {
+    display: flex; align-items: center; gap: 18px;
+    justify-content: center; color: var(--gold);
+    font-size: 0.84rem; flex-wrap: wrap;
+  }
+  .voc-done {
+    text-align: center; padding: 24px;
+    background: linear-gradient(135deg, #0A2410, #153D20);
+    border-radius: 10px; border: 2px solid #6AAA6A;
+    color: #9ADA9A; font-size: 1rem; line-height: 1.6;
+  }
+  .voc-done h3 { color: #B0EEB0; font-size: 1.25rem; margin-bottom: 8px; }
+  @media (max-width: 500px) {
+    .voc-opts { grid-template-columns: 1fr; }
+    .voc-lat  { font-size: 1.1rem; }
+    .voc-ger  { font-size: 1rem; }
+  }
+
+  .voc-hint-text {
+    font-size: 0.75rem; color: var(--stein-hell); text-align: center;
+    margin-bottom: 10px; font-style: italic;
+  }
+
+  /* ─── MATCH-SPIEL ───────────────────────────────────── */
+  .match-info-row {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 10px; font-size: 0.82rem;
+  }
+  .match-timer { font-size: 1.4rem; font-weight: bold; color: var(--gold); font-variant-numeric: tabular-nums; }
+  .match-grid  { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; margin-bottom: 12px; }
+  .match-card  {
+    padding: 10px 6px; border-radius: 8px; cursor: pointer;
+    border: 2px solid rgba(201,164,77,0.3); background: var(--weiss);
+    color: var(--stein); font-size: 0.8rem; text-align: center;
+    min-height: 52px; display: flex; align-items: center; justify-content: center;
+    line-height: 1.3; font-family: 'Georgia', serif;
+    transition: transform 0.15s, box-shadow 0.15s, opacity 0.35s;
+  }
+  .match-card.la {
+    background: linear-gradient(135deg, #2A1A0A, #3D2510);
+    color: var(--gold-hell); border-color: var(--gold); font-style: italic;
+  }
+  .match-card.selected {
+    border-color: #5A9EE0; box-shadow: 0 0 14px rgba(90,158,224,0.6); transform: scale(1.05);
+  }
+  .match-card.matched { opacity: 0; pointer-events: none; transform: scale(0.9); }
+  .match-card.wrong   { background: #F4D8D8 !important; border-color: #C05050 !important; }
+  @keyframes matchShake {
+    0%,100% { transform: translateX(0); }
+    20%,60% { transform: translateX(-5px); }
+    40%,80% { transform: translateX(5px); }
+  }
+  .match-card.wrong { animation: matchShake 0.4s ease; }
+  .match-done {
+    text-align: center; padding: 24px;
+    background: linear-gradient(135deg, #0A2410, #153D20);
+    border-radius: 10px; border: 2px solid #6AAA6A; color: #9ADA9A;
+  }
+  .match-done h3 { color: #B0EEB0; font-size: 1.2rem; margin-bottom: 8px; }
+  @media (max-width: 520px) { .match-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  /* ─── DUELL-SPIEL ───────────────────────────────────── */
+  .duel-scoreboard {
+    display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; margin-bottom: 14px;
+  }
+  .duel-player { border-radius: 8px; padding: 10px; text-align: center; }
+  .duel-p1 { background: linear-gradient(135deg,#0A1A2E,#153050); border: 1.5px solid #4A8ACA; }
+  .duel-p2 { background: linear-gradient(135deg,#2E0A0A,#501520); border: 1.5px solid #CA4A4A; }
+  .duel-player-name { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
+  .duel-p1 .duel-player-name { color: #80B8E8; }
+  .duel-p2 .duel-player-name { color: #E88080; }
+  .duel-player-score { font-size: 2.2rem; font-weight: bold; color: var(--weiss); line-height: 1; margin: 4px 0; }
+  .duel-key-hint { font-size: 0.68rem; color: rgba(255,255,255,0.4); }
+  .duel-vs { display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 1rem; font-weight: bold; }
+
+  .duel-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+  .duel-opt {
+    padding: 14px 10px 10px; border-radius: 8px; position: relative;
+    border: 1.5px solid rgba(201,164,77,0.3); background: var(--weiss);
+    color: var(--stein); font-size: 0.88rem; text-align: center;
+    line-height: 1.3; font-family: 'Georgia', serif; transition: all 0.15s;
+  }
+  .duel-key-p1 {
+    position: absolute; top: 4px; left: 5px;
+    font-size: 0.65rem; color: #4A8ACA; font-weight: bold;
+    background: rgba(74,138,202,0.15); padding: 1px 5px; border-radius: 3px;
+  }
+  .duel-key-p2 {
+    position: absolute; top: 4px; right: 5px;
+    font-size: 0.65rem; color: #CA4A4A; font-weight: bold;
+    background: rgba(202,74,74,0.15); padding: 1px 5px; border-radius: 3px;
+  }
+  .duel-opt.p1-correct { background: #D0E8F8; border-color: #4A8ACA; font-weight: bold; }
+  .duel-opt.p2-correct { background: #F8D0D0; border-color: #CA4A4A; font-weight: bold; }
+  .duel-opt.correct-answer { background: #DFF0DF; border-color: #4A9E4A; }
+  .duel-opt.p1-wrong, .duel-opt.p2-wrong { background: #F4E0E0; border-color: #9E4A4A; opacity: 0.7; }
+  .duel-result-banner {
+    text-align: center; padding: 10px 14px; border-radius: 8px;
+    font-weight: bold; font-size: 0.92rem; margin-top: 6px;
+  }
+  .duel-winner-msg {
+    text-align: center; padding: 28px;
+    background: linear-gradient(135deg, #1A1A3A, #0A0A2A);
+    border-radius: 12px; border: 2px solid rgba(201,164,77,0.5);
+    color: var(--gold-hell);
+  }
+  .duel-winner-msg h3 { font-size: 1.5rem; margin-bottom: 10px; }
+  @media (max-width: 500px) { .duel-opts { grid-template-columns: 1fr; } }
+
+  /* ── Tippen-Modus ── */
+  .tippen-wrap { text-align: center; padding: 8px 0; }
+  .tippen-de { font-size: 1.5rem; font-weight: 700; color: var(--gold-hell); margin-bottom: 18px; letter-spacing: 0.02em; }
+  .tippen-input { background: rgba(255,255,255,0.07); border: 2px solid rgba(201,164,77,0.4);
+    border-radius: 10px; color: #fff; font-size: 1.05rem; padding: 10px 16px;
+    width: 100%; max-width: 340px; text-align: center; outline: none; }
+  .tippen-input:focus { border-color: var(--gold); }
+  .tippen-btn { margin: 12px auto 4px; display: block; }
+  .tippen-feedback { min-height: 32px; font-size: 1rem; margin-top: 8px; }
+  .tippen-feedback.ok  { color: #7EDD7E; }
+  .tippen-feedback.err { color: #FF8080; }
+  .tippen-correct-hint { font-size: 0.82rem; color: var(--stein-hell); margin-top: 4px; }
+
+  /* ── Spalten-Modus (Spalten-Zuordnung) ── */
+  .spalten-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px; }
+  .spalten-col-label { text-align: center; font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--stein-hell); text-transform: uppercase; margin-bottom: 4px; }
+  .spalten-item { padding: 8px 10px; border-radius: 8px; cursor: pointer; font-size: 0.88rem;
+    border: 2px solid rgba(201,164,77,0.25); background: rgba(255,255,255,0.04);
+    color: var(--sand); text-align: center; transition: all .15s; word-break: break-word; }
+  .spalten-item:hover { border-color: rgba(201,164,77,0.6); background: rgba(201,164,77,0.08); }
+  .spalten-item.selected { border-color: #5B9BD5; background: rgba(91,155,213,0.2); color:#9DC8F0; }
+  .spalten-item.matched  { border-color: rgba(80,180,80,0.5); background: rgba(80,180,80,0.1);
+    color: #7ED87E; cursor: default; opacity: 0.65; }
+  .spalten-item.wrong    { border-color: rgba(220,60,60,0.7); background: rgba(220,60,60,0.12);
+    animation: matchShake .4s ease; }
+  .spalten-info-row { display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.78rem; color: var(--stein-hell); margin-bottom: 6px; }
+  .spalten-score { font-weight: 700; color: var(--gold-hell); }
+
+  /* ── Grammatik-Spiel ── */
+  .gram-wrap { padding: 4px 0; }
+  .gram-mode-row { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+  .gram-mode-btn { flex: 1; min-width: 90px; padding: 9px 8px; border-radius: 9px; border: 2px solid rgba(201,164,77,0.3);
+    background: rgba(255,255,255,0.04); color: var(--sand); font-size: 0.85rem; cursor: pointer;
+    font-family: inherit; transition: all .15s; }
+  .gram-mode-btn.active { background: rgba(201,164,77,0.2); border-color: var(--gold); color: var(--gold-hell); font-weight: 700; }
+  .gram-form-display { font-size: 1.7rem; font-weight: 700; color: var(--gold-hell);
+    text-align: center; margin: 12px 0 4px; letter-spacing: 0.03em; }
+  .gram-form-sub { font-size: 0.82rem; color: var(--stein-hell); text-align: center; margin-bottom: 14px; }
+  .gram-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+  .gram-opt { padding: 11px 8px; border-radius: 9px; border: 2px solid rgba(201,164,77,0.25);
+    background: rgba(255,255,255,0.05); color: var(--sand); font-size: 0.9rem;
+    cursor: pointer; text-align: center; font-family: inherit; transition: all .15s; word-break: break-word; }
+  .gram-opt:hover { border-color: rgba(201,164,77,0.6); }
+  .gram-opt.correct { border-color: #4CAF50; background: rgba(76,175,80,0.2); color:#A8E6AB; }
+  .gram-opt.wrong   { border-color: #E53935; background: rgba(229,57,53,0.15); }
+  .gram-tabelle { width: 100%; border-collapse: collapse; margin-bottom: 12px; font-size: 0.88rem; }
+  .gram-tabelle th { padding: 6px 10px; background: rgba(201,164,77,0.12);
+    color: var(--gold-hell); font-weight: 700; text-align: left; border-bottom: 1px solid rgba(201,164,77,0.2); }
+  .gram-tabelle td { padding: 6px 10px; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--sand); }
+  .gram-tabelle td.gram-td-btn { padding: 4px 6px; }
+  .gram-cell-opt { display: inline-block; padding: 4px 8px; margin: 2px; border-radius: 6px;
+    border: 1px solid rgba(201,164,77,0.3); background: rgba(255,255,255,0.04);
+    color: var(--sand); cursor: pointer; font-size: 0.82rem; font-family: inherit; }
+  .gram-cell-opt.correct { border-color: #4CAF50; background: rgba(76,175,80,0.2); color:#A8E6AB; }
+  .gram-cell-opt.wrong   { border-color: #E53935; background: rgba(229,57,53,0.15); animation: matchShake .4s; }
+  .gram-score-row { display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--stein-hell); }
+  .gram-done { text-align: center; padding: 24px; }
+  .gram-done h3 { color: var(--gold-hell); font-size: 1.3rem; margin-bottom: 10px; }
 </style>
 </head>
 <body>
@@ -1079,6 +1333,40 @@
   </div>
 
   <!-- ══════════════════════════════════════════════════════════
+       VERBARIUM – NEUE VOKABELN L. 14
+  ══════════════════════════════════════════════════════════ -->
+  <div class="phase-card" id="phVerbNeu" style="border-color: rgba(106,148,26,0.45);">
+    <div class="phase-header" style="border-left: 5px solid #6A9A1A;">
+      <div class="phase-num" style="background: #3A5A0A; font-size: 1.1rem;">🌿</div>
+      <div class="phase-title-block">
+        <div class="phase-title" style="color:#C8E890">Verbarium – neue Vokabeln L. 14 üben</div>
+        <div class="phase-desc" style="color:#88AA50">Alle neuen Wörter aus L. 14 trainieren · Karteikarten &amp; Quiz · jederzeit verfügbar</div>
+      </div>
+      <div class="phase-toggle" style="color:#88AA50">▾</div>
+    </div>
+    <div class="phase-body" style="display:none;">
+      <div class="verbarium-wrap" id="gameNeu"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       VERBARIUM – ALTE VOKABELN (aus L. 1–13)
+  ══════════════════════════════════════════════════════════ -->
+  <div class="phase-card" id="phVerbAlt" style="border-color: rgba(90,148,106,0.45);">
+    <div class="phase-header" style="border-left: 5px solid #3A8A5A;">
+      <div class="phase-num" style="background: #0A3A1A; font-size: 1.1rem;">📖</div>
+      <div class="phase-title-block">
+        <div class="phase-title" style="color:#A0D4B0">Verbarium – alte Vokabeln (L. 1–13) üben</div>
+        <div class="phase-desc" style="color:#60A070">Bekannte Wörter aus L. 1–13, die im Lektionstext vorkommen – jetzt auffrischen!</div>
+      </div>
+      <div class="phase-toggle" style="color:#60A070">▾</div>
+    </div>
+    <div class="phase-body" style="display:none;">
+      <div class="verbarium-wrap" id="gameAlt"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
        PAUSE & ONLINE-SPIELE (LearningApps)
   ══════════════════════════════════════════════════════════ -->
   <div class="phase-card" id="phPause" style="border-color: rgba(90,160,90,0.4);">
@@ -1094,6 +1382,17 @@
 
       <div class="pause-hinweis">
         🎮 Diese Online-Übungen kannst du <strong>jederzeit</strong> bearbeiten – als kleine Pause zwischen den Phasen oder wenn du früher fertig bist. Sie zählen nicht im Fortschrittsbalken, aber du übst dabei echte Lateingrammatik und Vokabeln. <em>Viel Spaß!</em>
+      </div>
+
+      <div class="section-label" style="color:#6A9A6A; border-color: rgba(90,160,90,0.3); margin-top:4px;">🏛️ Grammatik-Spiele: Perfekt · Plusquamperfekt · Futur I</div>
+
+      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(90,160,90,0.25); border-radius: 12px; padding: 16px; margin-bottom: 16px;">
+        <div style="font-size:0.82rem; color:var(--stein-hell); margin-bottom: 10px;">
+          🔍 <strong>Tempus erkennen</strong> – Formen aus dem L.14 Text identifizieren ·
+          🏗️ <strong>Formen bilden</strong> – richtige Form aus Optionen wählen ·
+          📊 <strong>Konjugation</strong> – vollständige Tabelle ausfüllen
+        </div>
+        <div class="gram-wrap" id="gameGrammar"></div>
       </div>
 
       <div class="section-label" style="color:#6A9A6A; border-color: rgba(90,160,90,0.3); margin-top:4px;">🎯 Plusquamperfekt gezielt üben</div>
@@ -1455,6 +1754,910 @@ document.addEventListener('DOMContentLoaded', function() {
   try { savedView = localStorage.getItem('latein_l14_view') || 'schueler'; } catch(e) {}
   setView(savedView);
   restoreProgress();
+});
+</script>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+//  VERBARIUM – VOKABELSPIEL ENGINE  (v2)
+// ═══════════════════════════════════════════════════════════
+
+// ── NEUE VOKABELN L. 14 (Lernvokabeln + Textvokabeln aus AB_05 & AB_08) ──────
+var VOCAB_NEU = [
+  {la:'lupa, lupae f.',          de:'die Wölfin'},
+  {la:'pāstor, pāstōris m.',     de:'der Hirte'},
+  {la:'ēducāre',                 de:'großziehen / erziehen'},
+  {la:'rēgnum, rēgnī n.',        de:'die Herrschaft / das Königreich'},
+  {la:'contrōversia, -ae f.',    de:'der Streit'},
+  {la:'trānsilīre',              de:'hinüberspringen'},
+  {la:'condere',                 de:'gründen'},
+  {la:'properāre',               de:'eilen'},
+  {la:'avis, avis f.',           de:'der Vogel'},
+  {la:'contendere',              de:'behaupten / wetteifern'},
+  {la:'īnstruere',               de:'errichten / aufbauen'},
+  {la:'mūrus, mūrī m.',          de:'die Mauer'},
+  {la:'appellāre',               de:'nennen / ansprechen'},
+  {la:'regere',                  de:'herrschen / lenken'},
+  {la:'pārēre (+ Dat.)',         de:'gehorchen / sich verhalten'},
+  {la:'iuvenis, iuvenis m.',     de:'der Jüngling'},
+  {la:'adeo',                    de:'so sehr / sogar'},
+  {la:'appārēre',                de:'erscheinen'},
+  {la:'ascendere',               de:'aufsteigen / hinaufgehen'},
+  {la:'socius, sociī m.',        de:'der Gefährte / Verbündete'},
+  {la:'rīpa, rīpae f.',          de:'das Ufer'},
+  {la:'vix',                     de:'kaum'},
+  {la:'inquit',                  de:'sagte er / sie (inquit)'}
+];
+
+// ── ALTE VOKABELN L. 1–13 (im Lektionstext „Ein Streit zwischen Brüdern") ─────
+var VOCAB_ALT = [
+  {la:'frāter, frātris m.',      de:'der Bruder'},
+  {la:'puer, puerī m.',          de:'der Junge / Knabe'},
+  {la:'uxor, uxōris f.',         de:'die Ehefrau'},
+  {la:'servāre',                 de:'retten / bewahren'},
+  {la:'audīre',                  de:'hören'},
+  {la:'vidēre',                  de:'sehen'},
+  {la:'dūcere',                  de:'führen'},
+  {la:'narrāre',                 de:'erzählen'},
+  {la:'magnus, a, um',           de:'groß'},
+  {la:'bonus, a, um',            de:'gut'},
+  {la:'terra, terrae f.',        de:'das Land / die Erde'},
+  {la:'tamen',                   de:'trotzdem / jedoch'},
+  {la:'vir, virī m.',            de:'der Mann'},
+  {la:'novus, a, um',            de:'neu'},
+  {la:'iam',                     de:'schon / bereits / jetzt'},
+  {la:'urbs, urbis f.',          de:'die Stadt'},
+  {la:'deus, deī m.',            de:'der Gott'},
+  {la:'rex, regis m.',           de:'der König'},
+  {la:'habēre',                  de:'haben'},
+  {la:'statim',                  de:'sofort'},
+  {la:'tunc',                    de:'dann / daraufhin'},
+  {la:'at',                      de:'aber / doch'},
+  {la:'subitō',                  de:'plötzlich'},
+  {la:'īnvenīre',                de:'finden'},
+  {la:'dare, dedī',              de:'geben'}
+];
+
+function vocShuffle(arr) {
+  var a = arr.slice();
+  for (var i = a.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+
+function vocWrongOpts(vocab, correctDe, count) {
+  var pool = [];
+  for (var i = 0; i < vocab.length; i++) {
+    if (vocab[i].de !== correctDe) pool.push(vocab[i].de);
+  }
+  pool = vocShuffle(pool);
+  return pool.slice(0, count);
+}
+
+function VocabGame(containerId, vocabData) {
+  var el = document.getElementById(containerId);
+  if (!el) return;
+
+  var mode = 'karte';
+
+  // Karteikarten
+  var deck = vocShuffle(vocabData), kIdx = 0, kFlip = false;
+
+  // Quiz
+  var qDeck, qIdx, qScore, qLocked;
+  function resetQuiz() { qDeck = vocShuffle(vocabData); qIdx = 0; qScore = 0; qLocked = false; }
+  resetQuiz();
+
+  // Match (Zuordnung auf Zeit)
+  var M_PAIRS = 6;
+  var mCards = [], mSel = null, mHits = 0, mTime = 0, mClock = null, mDone = false;
+
+  function initMatch() {
+    var pairs = vocShuffle(vocabData).slice(0, Math.min(M_PAIRS, vocabData.length));
+    mCards = [];
+    for (var i = 0; i < pairs.length; i++) {
+      mCards.push({id:i, type:'la', text:pairs[i].la, matched:false});
+      mCards.push({id:i, type:'de', text:pairs[i].de, matched:false});
+    }
+    mCards = vocShuffle(mCards);
+    mSel = null; mHits = 0; mTime = 0; mDone = false;
+  }
+
+  function fmtSec(s) {
+    var m = Math.floor(s / 60), r = s % 60;
+    return (m < 10 ? '0' : '') + m + ':' + (r < 10 ? '0' : '') + r;
+  }
+
+  // Duell (2 Spieler per Tastatur)
+  var D_ROUNDS = 10;
+  var dDeck, dIdx, dOpts, dScore, dAnswered, dKeyFn = null;
+
+  function resetDuel() {
+    dDeck = vocShuffle(vocabData); dIdx = 0; dScore = [0,0]; dAnswered = false;
+    newDuelQ();
+  }
+
+  function newDuelQ() {
+    if (dIdx >= D_ROUNDS || dIdx >= dDeck.length) return;
+    var c = dDeck[dIdx], wrongs = vocWrongOpts(vocabData, c.de, 3);
+    var pos = Math.floor(Math.random() * 4);
+    dOpts = []; var wi = 0;
+    for (var i = 0; i < 4; i++)
+      dOpts.push(i === pos ? {text:c.de, ok:true} : {text:wrongs[wi++], ok:false});
+    dAnswered = false;
+  }
+
+  resetDuel();
+
+  // ── render ─────────────────────────────────────────────
+  function render() {
+    if (mClock) { clearInterval(mClock); mClock = null; }
+    if (dKeyFn)  { document.removeEventListener('keydown', dKeyFn); dKeyFn = null; }
+    el.innerHTML = buildHtml();
+    bind();
+  }
+
+  function buildHtml() {
+    return '<div class="voc-mode-row">' +
+      mBtn('karte',  '🃏 Karten') +
+      mBtn('quiz',   '🎯 Quiz') +
+      mBtn('match',  '⚡ Match') +
+      mBtn('duel',   '⚔️ Duell') +
+      mBtn('tippen', '🖊️ Tippen') +
+      mBtn('spalten','🔗 Spalten') +
+    '</div>' + buildContent();
+  }
+
+  function mBtn(m, lbl) {
+    return '<button class="voc-mode-btn' + (mode === m ? ' active' : '') +
+           '" data-m="' + m + '">' + lbl + '</button>';
+  }
+
+  // Tippen
+  var tDeck, tIdx, tScore, tLocked;
+  function resetTippen() { tDeck = vocShuffle(vocabData); tIdx = 0; tScore = 0; tLocked = false; }
+  resetTippen();
+
+  // Spalten (column matching)
+  var SP_PAIRS = 7;
+  var spLeft = [], spRight = [], spSel = null, spMatched = [];
+  function initSpalten() {
+    var pairs = vocShuffle(vocabData).slice(0, Math.min(SP_PAIRS, vocabData.length));
+    spLeft  = vocShuffle(pairs.map(function(p,i){ return {id:i, text:p.de, type:'de'}; }));
+    spRight = vocShuffle(pairs.map(function(p,i){ return {id:i, text:p.la, type:'la'}; }));
+    spSel = null; spMatched = [];
+  }
+  initSpalten();
+
+  function stripMacrons(s) {
+    return s.toLowerCase()
+      .replace(/[āăâä]/g,'a').replace(/[ēĕêë]/g,'e').replace(/[īĭîï]/g,'i')
+      .replace(/[ōŏôö]/g,'o').replace(/[ūŭûü]/g,'u');
+  }
+
+  function buildContent() {
+    if (mode === 'karte')  return buildKarte();
+    if (mode === 'quiz')   return buildQuiz();
+    if (mode === 'match')  return buildMatch();
+    if (mode === 'duel')   return buildDuel();
+    if (mode === 'tippen') return buildTippen();
+    if (mode === 'spalten') return buildSpalten();
+    return '';
+  }
+
+  // ── Karteikarten ───────────────────────────────────────
+  function buildKarte() {
+    var c = deck[kIdx];
+    return '<p class="voc-hint-text">Karte anklicken → Übersetzung aufdecken · ← → blättern · 🔀 mischen</p>' +
+    '<div class="voc-scene" id="vs_' + containerId + '">' +
+      '<div class="voc-inner' + (kFlip ? ' flipped' : '') + '">' +
+        '<div class="voc-face voc-front">' +
+          '<div class="voc-lat">' + c.la + '</div>' +
+          '<div class="voc-tip">👆 anklicken</div>' +
+        '</div>' +
+        '<div class="voc-face voc-back">' +
+          '<div class="voc-ger">' + c.de + '</div>' +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="voc-nav-row">' +
+      '<button class="voc-nav-btn" data-k="prev">← Zurück</button>' +
+      '<span class="voc-counter">' + (kIdx + 1) + ' / ' + deck.length + '</span>' +
+      '<button class="voc-nav-btn" data-k="next">Weiter →</button>' +
+    '</div>' +
+    '<button class="voc-shuffle" data-k="shuffle">🔀 Karten mischen</button>';
+  }
+
+  // ── Quiz ───────────────────────────────────────────────
+  function buildQuiz() {
+    if (qIdx >= qDeck.length) {
+      var pct = Math.round(qScore / qDeck.length * 100);
+      var stars = pct >= 90 ? '🏆' : pct >= 70 ? '⭐' : '💪';
+      return '<div class="voc-done"><h3>' + stars + ' Fertig! ' + qScore + '/' +
+        qDeck.length + ' richtig (' + pct + '%)</h3>' +
+        '<button class="voc-nav-btn" data-q="restart" style="margin-top:14px">🔄 Nochmal</button></div>';
+    }
+    var card = qDeck[qIdx], wrongs = vocWrongOpts(vocabData, card.de, 3);
+    var pos = Math.floor(Math.random() * 4), opts = [], wi = 0;
+    for (var i = 0; i < 4; i++)
+      opts.push(i === pos ? {text:card.de, ok:true} : {text:wrongs[wi++], ok:false});
+    var oh = '';
+    for (var i = 0; i < opts.length; i++)
+      oh += '<button class="voc-opt" data-ok="' + (opts[i].ok?'1':'0') + '">' + opts[i].text + '</button>';
+    return '<div class="voc-quiz-q">' + card.la + '</div>' +
+      '<div class="voc-opts">' + oh + '</div>' +
+      '<div class="voc-score-row">' +
+        '<span>✅ Richtig: <strong>' + qScore + '</strong></span>' +
+        '<span>Frage <strong>' + (qIdx+1) + ' / ' + qDeck.length + '</strong></span>' +
+      '</div>';
+  }
+
+  // ── Match ──────────────────────────────────────────────
+  function buildMatch() {
+    if (mDone === 'restart' || mCards.length === 0) initMatch();
+    if (mDone === true) {
+      return '<div class="match-done"><h3>🎉 Alle ' + M_PAIRS + ' Paare gefunden!</h3>' +
+        '<p>Deine Zeit: <strong>' + fmtSec(mTime) + '</strong></p>' +
+        '<button class="voc-nav-btn" data-ma="restart" style="margin-top:14px">🔄 Neue Runde</button></div>';
+    }
+    var cards = '';
+    for (var i = 0; i < mCards.length; i++) {
+      var c = mCards[i];
+      var cls = 'match-card ' + c.type + (c.matched?' matched':'') + (mSel===c?' selected':'');
+      cards += '<button class="' + cls + '" data-ci="' + i + '">' + c.text + '</button>';
+    }
+    return '<div class="match-info-row">' +
+      '<span style="font-size:0.78rem;color:var(--stein-hell)">Latein → passendes Deutsch klicken</span>' +
+      '<span class="match-timer" id="mt_' + containerId + '">' + fmtSec(mTime) + '</span>' +
+    '</div><div class="match-grid">' + cards + '</div>';
+  }
+
+  // ── Duell ──────────────────────────────────────────────
+  function buildDuel() {
+    if (dIdx >= D_ROUNDS) {
+      var w = dScore[0]>dScore[1]?'🔵 Spieler 1 gewinnt!':
+              dScore[1]>dScore[0]?'🔴 Spieler 2 gewinnt!':'🤝 Unentschieden!';
+      return '<div class="duel-winner-msg"><h3>' + w + '</h3>' +
+        '<p>Spieler 1: <strong>' + dScore[0] + '</strong> &nbsp;·&nbsp; Spieler 2: <strong>' + dScore[1] + '</strong></p>' +
+        '<button class="voc-nav-btn" data-du="restart" style="margin-top:16px">🔄 Neues Duell</button></div>';
+    }
+    var c = dDeck[dIdx], kl = [['1','Q'],['2','W'],['3','E'],['4','R']], oh = '';
+    for (var i = 0; i < 4; i++) {
+      oh += '<div class="duel-opt" data-di="' + i + '">' +
+        '<span class="duel-key-p1">' + kl[i][0] + '</span>' +
+        '<span class="duel-key-p2">' + kl[i][1] + '</span>' +
+        dOpts[i].text + '</div>';
+    }
+    return '<div class="duel-scoreboard">' +
+      '<div class="duel-player duel-p1"><div class="duel-player-name">🔵 Spieler 1</div>' +
+        '<div class="duel-player-score">' + dScore[0] + '</div>' +
+        '<div class="duel-key-hint">Tasten: 1 · 2 · 3 · 4</div></div>' +
+      '<div class="duel-vs">VS</div>' +
+      '<div class="duel-player duel-p2"><div class="duel-player-name">🔴 Spieler 2</div>' +
+        '<div class="duel-player-score">' + dScore[1] + '</div>' +
+        '<div class="duel-key-hint">Tasten: Q · W · E · R</div></div>' +
+    '</div>' +
+    '<div class="voc-quiz-q">' + c.la + '</div>' +
+    '<div class="duel-opts">' + oh + '</div>' +
+    '<p style="text-align:center;font-size:0.78rem;color:var(--stein-hell);margin-top:4px">' +
+      'Runde ' + (dIdx+1) + ' von ' + D_ROUNDS + '</p>';
+  }
+
+  // ── Tippen ────────────�
+  // ── Tippen ─────────────────────────────────────────────
+  function buildTippen() {
+    if (tIdx >= tDeck.length) {
+      var pct = Math.round(tScore / tDeck.length * 100);
+      var stars = pct >= 90 ? '🏆' : pct >= 70 ? '⭐' : '💪';
+      return '<div class="voc-done"><h3>' + stars + ' Fertig! ' + tScore + '/' + tDeck.length +
+        ' richtig (' + pct + '%)</h3>' +
+        '<button class="voc-nav-btn" data-t="restart" style="margin-top:14px">🔄 Nochmal</button></div>';
+    }
+    var c = tDeck[tIdx];
+    return '<div class="tippen-wrap">' +
+      '<p class="voc-hint-text">Deutsch lesen → Latein eintippen → Enter</p>' +
+      '<div class="tippen-de">' + c.de + '</div>' +
+      '<input class="tippen-input" id="ti_' + containerId + '" type="text" placeholder="Lateinisch eingeben ..." autocomplete="off" autocorrect="off" spellcheck="false">' +
+      '<button class="voc-nav-btn tippen-btn" data-t="check">Prüfen ✓</button>' +
+      '<div class="tippen-feedback" id="tf_' + containerId + '"></div>' +
+    '</div>' +
+    '<div class="voc-score-row">' +
+      '<span>✅ Richtig: <strong>' + tScore + '</strong></span>' +
+      '<span>Wort <strong>' + (tIdx+1) + ' / ' + tDeck.length + '</strong></span>' +
+    '</div>';
+  }
+
+  // ── Spalten ────────────────────────────────────────────
+  function buildSpalten() {
+    if (spMatched.length >= spLeft.length) {
+      return '<div class="voc-done"><h3>🎉 Alle ' + spLeft.length + ' Paare gefunden!</h3>' +
+        '<button class="voc-nav-btn" data-sp="restart" style="margin-top:14px">🔄 Neue Runde</button></div>';
+    }
+    var leftH = '', rightH = '';
+    for (var i = 0; i < spLeft.length; i++) {
+      var lm = spMatched.indexOf(spLeft[i].id) >= 0;
+      var rm = spMatched.indexOf(spRight[i].id) >= 0;
+      leftH  += '<div class="spalten-item' + (lm?' matched':'') + (spSel&&spSel.el===spLeft[i]?' selected':'') +
+        '" data-sp-l="' + i + '">' + spLeft[i].text + '</div>';
+      rightH += '<div class="spalten-item' + (rm?' matched':'') + (spSel&&spSel.el===spRight[i]?' selected':'') +
+        '" data-sp-r="' + i + '">' + spRight[i].text + '</div>';
+    }
+    return '<div class="spalten-info-row">' +
+      '<span>Deutsch anklicken, dann passendes Latein</span>' +
+      '<span class="spalten-score">✅ ' + spMatched.length + ' / ' + spLeft.length + '</span>' +
+    '</div>' +
+    '<div class="spalten-grid"><div>' +
+      '<div class="spalten-col-label">Deutsch</div>' + leftH +
+    '</div><div>' +
+      '<div class="spalten-col-label">Latein</div>' + rightH +
+    '</div></div>';
+  }
+
+  // ── bind ───────────────────────────────────────────────
+  function bind() {
+    var mbs = el.querySelectorAll('.voc-mode-btn');
+    for (var i = 0; i < mbs.length; i++) {
+      (function(b) {
+        b.addEventListener('click', function() {
+          mode = b.dataset.m;
+          if (mode === 'quiz')    resetQuiz();
+          if (mode === 'match')   mDone = 'restart';
+          if (mode === 'duel')    resetDuel();
+          if (mode === 'tippen')  resetTippen();
+          if (mode === 'spalten') initSpalten();
+          render();
+        });
+      })(mbs[i]);
+    }
+
+    // Karte
+    var sc = document.getElementById('vs_' + containerId);
+    if (sc) sc.addEventListener('click', function() { kFlip = !kFlip; render(); });
+    var prevB = el.querySelector('[data-k="prev"]');
+    var nextB = el.querySelector('[data-k="next"]');
+    var shufB = el.querySelector('[data-k="shuffle"]');
+    if (prevB) prevB.addEventListener('click', function() { kIdx=(kIdx-1+deck.length)%deck.length; kFlip=false; render(); });
+    if (nextB) nextB.addEventListener('click', function() { kIdx=(kIdx+1)%deck.length; kFlip=false; render(); });
+    if (shufB) shufB.addEventListener('click', function() { deck=vocShuffle(vocabData); kIdx=0; kFlip=false; render(); });
+
+    // Quiz
+    var qr = el.querySelector('[data-q="restart"]');
+    if (qr) qr.addEventListener('click', function() { resetQuiz(); render(); });
+    var qobs = el.querySelectorAll('.voc-opt');
+    for (var i = 0; i < qobs.length; i++) {
+      (function(ob) {
+        ob.addEventListener('click', function() {
+          if (qLocked) return; qLocked = true;
+          var all = el.querySelectorAll('.voc-opt');
+          for (var j = 0; j < all.length; j++) {
+            all[j].disabled = true;
+            if (all[j].dataset.ok === '1') all[j].classList.add('correct');
+          }
+          if (ob.dataset.ok === '1') qScore++; else ob.classList.add('wrong');
+          var sr = el.querySelector('.voc-score-row');
+          if (sr) sr.innerHTML = '<span>✅ Richtig: <strong>'+qScore+'</strong></span>' +
+            '<span>Frage <strong>'+(qIdx+1)+' / '+qDeck.length+'</strong></span>';
+          setTimeout(function() { qIdx++; qLocked=false; render(); }, 1300);
+        });
+      })(qobs[i]);
+    }
+
+    // Match
+    var mar = el.querySelector('[data-ma="restart"]');
+    if (mar) mar.addEventListener('click', function() { mDone='restart'; render(); });
+    var mcs = el.querySelectorAll('.match-card');
+    for (var i = 0; i < mcs.length; i++) {
+      (function(mc) {
+        mc.addEventListener('click', function() {
+          if (mDone === true) return;
+          var ci = parseInt(mc.dataset.ci), c = mCards[ci];
+          if (c.matched) return;
+          if (!mClock) {
+            mClock = setInterval(function() {
+              mTime++;
+              var te = document.getElementById('mt_' + containerId);
+              if (te) te.textContent = fmtSec(mTime);
+            }, 1000);
+          }
+          if (!mSel) {
+            mSel = c; mc.classList.add('selected');
+          } else if (mSel === c) {
+            mSel = null; mc.classList.remove('selected');
+          } else if (mSel.id === c.id && mSel.type !== c.type) {
+            mSel.matched = true; c.matched = true; mHits++;
+            var prev = mSel; mSel = null;
+            var all = el.querySelectorAll('.match-card');
+            for (var j = 0; j < all.length; j++) {
+              var cj = mCards[parseInt(all[j].dataset.ci)];
+              if (cj.matched) all[j].classList.add('matched');
+              if (cj === prev) all[j].classList.remove('selected');
+            }
+            if (mHits >= mCards.length / 2) {
+              clearInterval(mClock); mClock = null; mDone = true;
+              setTimeout(function() { render(); }, 700);
+            }
+          } else {
+            var prev = mSel; mSel = null;
+            mc.classList.add('wrong');
+            var all = el.querySelectorAll('.match-card');
+            for (var j = 0; j < all.length; j++) {
+              if (mCards[parseInt(all[j].dataset.ci)] === prev) {
+                all[j].classList.add('wrong'); all[j].classList.remove('selected');
+              }
+            }
+            setTimeout(function() {
+              var ws = el.querySelectorAll('.match-card.wrong');
+              for (var j = 0; j < ws.length; j++) ws[j].classList.remove('wrong');
+            }, 500);
+          }
+        });
+      })(mcs[i]);
+    }
+
+    // Duell
+    var dur = el.querySelector('[data-du="restart"]');
+    if (dur) dur.addEventListener('click', function() { resetDuel(); render(); });
+    if (mode === 'duel' && dIdx < D_ROUNDS) {
+      var p1k = {'1':0,'2':1,'3':2,'4':3};
+      var p2k = {'q':0,'w':1,'e':2,'r':3,'Q':0,'W':1,'E':2,'R':3};
+      dKeyFn = function(ev) {
+        if (dAnswered) return;
+        var pl=-1, oi=-1;
+        if (p1k[ev.key] !== undefined) { pl=0; oi=p1k[ev.key]; }
+        else if (p2k[ev.key] !== undefined) { pl=1; oi=p2k[ev.key]; }
+        if (pl < 0) return;
+        dAnswered = true;
+        document.removeEventListener('keydown', dKeyFn); dKeyFn = null;
+        resolveDuel(pl, oi);
+      };
+      document.addEventListener('keydown', dKeyFn);
+    }
+
+    // Tippen
+    if (mode === 'tippen') {
+      var inp = document.getElementById('ti_' + containerId);
+      if (inp) setTimeout(function(){ inp.focus(); }, 50);
+      var tr = el.querySelector('[data-t="restart"]');
+      if (tr) tr.addEventListener('click', function() { resetTippen(); render(); });
+      function checkTippen() {
+        if (tLocked || !inp) return;
+        tLocked = true;
+        var val = inp.value.trim(), c = tDeck[tIdx];
+        var correct = stripMacrons(c.la.replace(/[,\s(].*/,''));
+        var given   = stripMacrons(val);
+        var ok = (given === correct || stripMacrons(c.la) === given);
+        var fb = document.getElementById('tf_' + containerId);
+        if (fb) {
+          fb.className = 'tippen-feedback ' + (ok ? 'ok' : 'err');
+          fb.innerHTML = ok ? '✅ Richtig!' :
+            '❌ Leider nein. <span class="tippen-correct-hint">Richtig: <strong>' + c.la + '</strong></span>';
+        }
+        if (ok) tScore++;
+        setTimeout(function() { tIdx++; tLocked = false; render(); }, ok ? 1000 : 1800);
+      }
+      var tchk = el.querySelector('[data-t="check"]');
+      if (tchk) tchk.addEventListener('click', checkTippen);
+      if (inp) inp.addEventListener('keydown', function(ev) {
+        if (ev.key === 'Enter') checkTippen();
+      });
+    }
+
+    // Spalten
+    if (mode === 'spalten') {
+      var spr = el.querySelector('[data-sp="restart"]');
+      if (spr) spr.addEventListener('click', function() { initSpalten(); render(); });
+      var spls = el.querySelectorAll('[data-sp-l]');
+      var sprs = el.querySelectorAll('[data-sp-r]');
+      function attachSpalten(items, side) {
+        for (var i = 0; i < items.length; i++) {
+          (function(item, s) {
+            item.addEventListener('click', function() {
+              var idx = parseInt(item.getAttribute(s==='l'?'data-sp-l':'data-sp-r'));
+              var pool = s === 'l' ? spLeft : spRight;
+              var obj = pool[idx];
+              if (spMatched.indexOf(obj.id) >= 0) return;
+              if (!spSel) {
+                spSel = {el:obj, side:s}; render();
+              } else if (spSel.el === obj) {
+                spSel = null; render();
+              } else if (spSel.side !== s && spSel.el.id === obj.id) {
+                spMatched.push(obj.id); spSel = null; render();
+              } else if (spSel.side !== s) {
+                var tmp = spSel; spSel = null;
+                item.classList.add('wrong');
+                var allItems = el.querySelectorAll('[data-sp-l],[data-sp-r]');
+                allItems.forEach(function(el2) {
+                  var attr = el2.getAttribute('data-sp-l');
+                  var id2 = attr !== null ? spLeft[parseInt(attr)].id : spRight[parseInt(el2.getAttribute('data-sp-r'))].id;
+                  if (id2 === tmp.el.id) el2.classList.add('wrong');
+                });
+                setTimeout(function() {
+                  var ws = el.querySelectorAll('.spalten-item.wrong');
+                  for (var j = 0; j < ws.length; j++) ws[j].classList.remove('wrong');
+                  render();
+                }, 500);
+              } else {
+                spSel = {el:obj, side:s}; render();
+              }
+            });
+          })(items[i], side);
+        }
+      }
+      attachSpalten(spls, 'l');
+      attachSpalten(sprs, 'r');
+    }
+  }
+
+  function resolveDuel(player, oi) {
+    var ok = dOpts[oi].ok;
+    if (ok) dScore[player]++;
+    var opts = el.querySelectorAll('.duel-opt');
+    for (var i = 0; i < opts.length; i++) {
+      var idx = parseInt(opts[i].dataset.di);
+      if (dOpts[idx].ok) opts[i].classList.add('correct-answer');
+      if (idx === oi && !dOpts[idx].ok) opts[i].classList.add(player===0?'p1-wrong':'p2-wrong');
+      if (idx === oi &&  dOpts[idx].ok) opts[i].classList.add(player===0?'p1-correct':'p2-correct');
+    }
+    var banner = document.createElement('div');
+    banner.className = 'duel-result-banner';
+    banner.style.cssText = 'background:'+(ok?'#DFF0DF':'#F4E0E0')+';color:'+(ok?'#1E5A1E':'#5A1E1E');
+    banner.textContent = ok
+      ? (player===0?'Spieler 1 richtig! +1 Punkt':'Spieler 2 richtig! +1 Punkt')
+      : (player===0?'Spieler 1 lag falsch':'Spieler 2 lag falsch');
+    el.appendChild(banner);
+    setTimeout(function() {
+      dIdx++;
+      if (dIdx < D_ROUNDS && dIdx < dDeck.length) newDuelQ();
+      render();
+    }, 1600);
+  }
+
+  render();
+}
+
+// ================================================================
+//  GRAMMATIK-SPIEL: Plusquamperfekt, Perfekt, Futur I
+// ================================================================
+
+var GRAM_FORMEN = [
+  {form:'audiverat',    tempus:'Plusquamperfekt', info:'audire - 3.Sg.', de:'hatte gehört'},
+  {form:'servaverat',   tempus:'Plusquamperfekt', info:'servare - 3.Sg.', de:'hatte gerettet'},
+  {form:'invenerat',    tempus:'Plusquamperfekt', info:'invenire - 3.Sg.', de:'hatte gefunden'},
+  {form:'aluerant',     tempus:'Plusquamperfekt', info:'alere - 3.Pl.', de:'hatten großgezogen'},
+  {form:'educaverant',  tempus:'Plusquamperfekt', info:'educare - 3.Pl.', de:'hatten erzogen'},
+  {form:'coeperat',     tempus:'Plusquamperfekt', info:'coepisse - 3.Sg.', de:'hatte begonnen'},
+  {form:'viderat',      tempus:'Plusquamperfekt', info:'videre - 3.Sg.', de:'hatte gesehen'},
+  {form:'dederant',     tempus:'Plusquamperfekt', info:'dare - 3.Pl.', de:'hatten gegeben'},
+  {form:'apparuerat',   tempus:'Plusquamperfekt', info:'apparere - 3.Sg.', de:'war erschienen'},
+  {form:'portaveram',   tempus:'Plusquamperfekt', info:'portare - 1.Sg.', de:'hatte getragen'},
+  {form:'narraveramus', tempus:'Plusquamperfekt', info:'narrare - 1.Pl.', de:'hatten erzählt'},
+  {form:'ceperunt',     tempus:'Perfekt', info:'capere - 3.Pl.', de:'fassten Beschluss'},
+  {form:'ascendit',     tempus:'Perfekt', info:'ascendere - 3.Sg.', de:'stieg hinauf'},
+  {form:'properavit',   tempus:'Perfekt', info:'properare - 3.Sg.', de:'eilte'},
+  {form:'apparuerunt',  tempus:'Perfekt', info:'apparere - 3.Pl.', de:'erschienen'},
+  {form:'clamavit',     tempus:'Perfekt', info:'clamare - 3.Sg.', de:'rief'},
+  {form:'convenerunt',  tempus:'Perfekt', info:'convenire - 3.Pl.', de:'kamen zusammen'},
+  {form:'vidit',        tempus:'Perfekt', info:'videre - 3.Sg.', de:'sah'},
+  {form:'risit',        tempus:'Perfekt', info:'ridere - 3.Sg.', de:'lachte aus'},
+  {form:'transiluit',   tempus:'Perfekt', info:'transilire - 3.Sg.', de:'sprang hinüber'},
+  {form:'habuerunt',    tempus:'Perfekt', info:'habere - 3.Pl.', de:'hatten'},
+  {form:'audivi',       tempus:'Perfekt', info:'audire - 1.Sg.', de:'habe gehört'},
+  {form:'amabit',       tempus:'Futur I', info:'amare - 3.Sg.', de:'wird lieben'},
+  {form:'laudabimus',   tempus:'Futur I', info:'laudare - 1.Pl.', de:'werden loben'},
+  {form:'videbis',      tempus:'Futur I', info:'videre - 2.Sg.', de:'wirst sehen'},
+  {form:'audiet',       tempus:'Futur I', info:'audire - 3.Sg.', de:'wird hören'},
+  {form:'reget',        tempus:'Futur I', info:'regere - 3.Sg.', de:'wird herrschen'},
+  {form:'servabunt',    tempus:'Futur I', info:'servare - 3.Pl.', de:'werden retten'},
+  {form:'amabat',       tempus:'Imperfekt', info:'amare - 3.Sg.', de:'liebte (wiederholt)'},
+  {form:'portabant',    tempus:'Imperfekt', info:'portare - 3.Pl.', de:'trugen (wiederholt)'},
+  {form:'veniebat',     tempus:'Imperfekt', info:'venire - 3.Sg.', de:'kam (wiederholt)'},
+  {form:'amat',         tempus:'Präsens', info:'amare - 3.Sg.', de:'liebt'},
+  {form:'habent',       tempus:'Präsens', info:'habere - 3.Pl.', de:'haben'},
+  {form:'venit',        tempus:'Präsens', info:'venire - 3.Sg.', de:'kommt'},
+];
+
+var GRAM_BILDUNG = [
+  {prompt:'laudare -> 3.Sg. Plusquamperfekt?', correct:'laudaverat',  wrong:['laudavit','laudabit','laudaverant']},
+  {prompt:'servare -> 3.Pl. Plusquamperfekt?', correct:'servaverant', wrong:['servaverint','servabunt','servaverat']},
+  {prompt:'audire -> 1.Sg. Plusquamperfekt?',  correct:'audiveram',   wrong:['audivi','audiverat','audiveramus']},
+  {prompt:'videre -> 3.Sg. Plusquamperfekt?',  correct:'viderat',     wrong:['vidit','videbit','viderant']},
+  {prompt:'dare -> 3.Pl. Plusquamperfekt?',    correct:'dederant',    wrong:['dederunt','dabunt','dederat']},
+  {prompt:'amare -> 3.Sg. Perfekt?',           correct:'amavit',      wrong:['amabat','amaverat','amabit']},
+  {prompt:'audire -> 3.Pl. Perfekt?',          correct:'audiverunt',  wrong:['audiverant','audiebant','audient']},
+  {prompt:'ducere -> 3.Sg. Perfekt?',          correct:'duxit',       wrong:['ducebat','duxerat','ducet']},
+  {prompt:'amare -> 3.Sg. Futur I?',           correct:'amabit',      wrong:['amavit','amabat','amaverat']},
+  {prompt:'audire -> 3.Pl. Futur I?',          correct:'audient',     wrong:['audiverunt','audiebant','audiverant']},
+  {prompt:'regere -> 3.Sg. Futur I?',          correct:'reget',       wrong:['regit','rexerat','regebat']},
+  {prompt:'videre -> 1.Sg. Futur I?',          correct:'videbo',      wrong:['vidi','videbam','videram']},
+];
+
+var GRAM_TABELLEN = [
+  {verb:'laudare (loben)', tense:'Plusquamperfekt', rows:[
+    {person:'1.Sg.', correct:'laudaveram',   wrong:['laudavi','laudaverant','laudabit']},
+    {person:'2.Sg.', correct:'laudaveras',   wrong:['laudavisti','laudabis','laudaverat']},
+    {person:'3.Sg.', correct:'laudaverat',   wrong:['laudavit','laudabit','laudaveram']},
+    {person:'1.Pl.', correct:'laudaveramus', wrong:['laudavimus','laudabimus','laudaverant']},
+    {person:'2.Pl.', correct:'laudaveratis', wrong:['laudavistis','laudabitis','laudaveras']},
+    {person:'3.Pl.', correct:'laudaverant',  wrong:['laudaverunt','laudabunt','laudaverat']},
+  ]},
+  {verb:'audire (hören)', tense:'Perfekt', rows:[
+    {person:'1.Sg.', correct:'audivi',       wrong:['audiebam','audiam','audiveram']},
+    {person:'2.Sg.', correct:'audivisti',    wrong:['audiebas','audies','audiveras']},
+    {person:'3.Sg.', correct:'audivit',      wrong:['audiebat','audiet','audiverat']},
+    {person:'1.Pl.', correct:'audivimus',    wrong:['audiebamus','audiemus','audiveramus']},
+    {person:'2.Pl.', correct:'audivistis',   wrong:['audiebatis','audietis','audiveritis']},
+    {person:'3.Pl.', correct:'audiverunt',   wrong:['audiebant','audient','audiverant']},
+  ]},
+  {verb:'amare (lieben)', tense:'Futur I', rows:[
+    {person:'1.Sg.', correct:'amabo',        wrong:['amavi','amabam','amaveram']},
+    {person:'2.Sg.', correct:'amabis',       wrong:['amavisti','amabas','amaveras']},
+    {person:'3.Sg.', correct:'amabit',       wrong:['amavit','amabat','amaverat']},
+    {person:'1.Pl.', correct:'amabimus',     wrong:['amavimus','amabamus','amaveramus']},
+    {person:'2.Pl.', correct:'amabitis',     wrong:['amavistis','amabatis','amaveritis']},
+    {person:'3.Pl.', correct:'amabunt',      wrong:['amaverunt','amabant','amaverant']},
+  ]},
+];
+
+function GrammarGame(containerId) {
+  var el = document.getElementById(containerId);
+  if (!el) return;
+
+  var mode = 'erkennen';
+  var TEMPORA = ['Präsens','Imperfekt','Perfekt','Plusquamperfekt','Futur I'];
+
+  var eDeck, eIdx, eScore, eLocked;
+  function resetErkennen() { eDeck = vocShuffle(GRAM_FORMEN.slice()); eIdx=0; eScore=0; eLocked=false; }
+  resetErkennen();
+
+  var bDeck, bIdx, bScore, bLocked;
+  function resetBilden() { bDeck = vocShuffle(GRAM_BILDUNG.slice()); bIdx=0; bScore=0; bLocked=false; }
+  resetBilden();
+
+  var tTabIdx = 0, tRowDone = [];
+  function resetTabelle() { tTabIdx=0; tRowDone=[]; }
+  resetTabelle();
+
+  function render() { el.innerHTML = buildHtml(); bind(); }
+
+  function buildHtml() {
+    return '<div class="gram-mode-row">' +
+      gBtn('erkennen','Tempus erkennen') +
+      gBtn('bilden',  'Formen bilden') +
+      gBtn('tabelle', 'Konjugation') +
+    '</div>' + buildContent();
+  }
+
+  function gBtn(m, lbl) {
+    return '<button class="gram-mode-btn' + (mode===m?' active':'') +
+           '" data-gm="' + m + '">' + lbl + '</button>';
+  }
+
+  function buildContent() {
+    if (mode==='erkennen') return buildErkennen();
+    if (mode==='bilden')   return buildBilden();
+    if (mode==='tabelle')  return buildTabelle();
+    return '';
+  }
+
+  function buildErkennen() {
+    if (eIdx >= eDeck.length) {
+      var pct = Math.round(eScore/eDeck.length*100);
+      return '<div class="gram-done"><h3>' + (pct>=85?'Sehr gut!':'Weiter üben!') +
+        ' ' + eScore + '/' + eDeck.length + ' (' + pct + '%)</h3>' +
+        '<button class="voc-nav-btn" data-ge="restart" style="margin-top:14px">Nochmal</button></div>';
+    }
+    var f = eDeck[eIdx], oh = '';
+    for (var i=0; i<TEMPORA.length; i++)
+      oh += '<button class="gram-opt" data-gt="' + TEMPORA[i] + '">' + TEMPORA[i] + '</button>';
+    return '<p class="voc-hint-text">Welches Tempus hat diese Form?</p>' +
+      '<div class="gram-form-display">' + f.form + '</div>' +
+      '<div class="gram-form-sub">' + f.info + ' &nbsp;·&nbsp; „' + f.de + '"</div>' +
+      '<div class="gram-opts" style="grid-template-columns:1fr 1fr 1fr">' + oh + '</div>' +
+      '<div class="gram-score-row"><span>Richtig: <strong>' + eScore + '</strong></span>' +
+      '<span>Form <strong>' + (eIdx+1) + ' / ' + eDeck.length + '</strong></span></div>';
+  }
+
+  function buildBilden() {
+    if (bIdx >= bDeck.length) {
+      var pct = Math.round(bScore/bDeck.length*100);
+      return '<div class="gram-done"><h3>' + (pct>=85?'Sehr gut!':'Weiter üben!') +
+        ' ' + bScore + '/' + bDeck.length + ' (' + pct + '%)</h3>' +
+        '<button class="voc-nav-btn" data-gb="restart" style="margin-top:14px">Nochmal</button></div>';
+    }
+    var q = bDeck[bIdx];
+    var pool = vocShuffle(q.wrong.slice(0,3).concat([q.correct]));
+    var oh = '';
+    for (var i=0; i<pool.length; i++)
+      oh += '<button class="gram-opt" data-ok="' + (pool[i]===q.correct?'1':'0') + '">' + pool[i] + '</button>';
+    return '<p class="voc-hint-text">Wähle die korrekte lateinische Form:</p>' +
+      '<div class="gram-form-display" style="font-size:1.1rem">' + q.prompt + '</div>' +
+      '<div class="gram-opts">' + oh + '</div>' +
+      '<div class="gram-score-row"><span>Richtig: <strong>' + bScore + '</strong></span>' +
+      '<span>Aufgabe <strong>' + (bIdx+1) + ' / ' + bDeck.length + '</strong></span></div>';
+  }
+
+  function buildTabelle() {
+    var tab = GRAM_TABELLEN[tTabIdx], rows = '';
+    for (var i=0; i<tab.rows.length; i++) {
+      var row = tab.rows[i], done = tRowDone[i], cell;
+      if (done === 'ok') {
+        cell = '<span class="gram-cell-opt correct">' + row.correct + '</span>';
+      } else {
+        var pool = vocShuffle(row.wrong.slice(0,3).concat([row.correct]));
+        var btns = '';
+        for (var j=0; j<pool.length; j++)
+          btns += '<button class="gram-cell-opt" data-row="'+i+'" data-ok="'+(pool[j]===row.correct?'1':'0')+'">' + pool[j] + '</button>';
+        cell = btns;
+      }
+      rows += '<tr><td>' + row.person + '</td><td class="gram-td-btn">' + cell + '</td></tr>';
+    }
+    var allDone = tRowDone.length===tab.rows.length && tRowDone.every(function(v){return v==='ok';});
+    var done_c  = tRowDone.filter(function(v){return v==='ok';}).length;
+    return '<p class="voc-hint-text">Klicke die richtige Form für jede Person:</p>' +
+      '<div class="gram-form-display" style="font-size:1.1rem">' + tab.verb + '</div>' +
+      '<div class="gram-form-sub">Tempus: <strong>' + tab.tense + '</strong></div>' +
+      '<table class="gram-tabelle"><thead><tr><th>Person</th><th>Form</th></tr></thead>' +
+      '<tbody>' + rows + '</tbody></table>' +
+      (allDone ? '<div style="text-align:center;margin-bottom:10px"><button class="voc-nav-btn" data-gtab="next">Nächste Tabelle</button></div>' : '') +
+      '<div class="gram-score-row"><span>Tabelle ' + (tTabIdx+1) + ' / ' + GRAM_TABELLEN.length + '</span>' +
+      '<span>' + done_c + ' / ' + tab.rows.length + ' Zeilen</span></div>';
+  }
+
+  function bind() {
+    var gms = el.querySelectorAll('.gram-mode-btn');
+    for (var i=0; i<gms.length; i++) {
+      (function(b) {
+        b.addEventListener('click', function() {
+          mode = b.dataset.gm;
+          if (mode==='erkennen') resetErkennen();
+          if (mode==='bilden')   resetBilden();
+          if (mode==='tabelle')  resetTabelle();
+          render();
+        });
+      })(gms[i]);
+    }
+    var ger = el.querySelector('[data-ge="restart"]');
+    if (ger) ger.addEventListener('click', function(){ resetErkennen(); render(); });
+    var gts = el.querySelectorAll('[data-gt]');
+    for (var i=0; i<gts.length; i++) {
+      (function(b) {
+        b.addEventListener('click', function() {
+          if (eLocked) return; eLocked=true;
+          var chosen=b.dataset.gt, correct=eDeck[eIdx].tempus;
+          var all=el.querySelectorAll('[data-gt]');
+          for (var j=0;j<all.length;j++) all[j].disabled=true;
+          if (chosen===correct) { b.classList.add('correct'); eScore++; }
+          else { b.classList.add('wrong'); for (var j=0;j<all.length;j++) if(all[j].dataset.gt===correct) all[j].classList.add('correct'); }
+          setTimeout(function(){ eIdx++; eLocked=false; render(); }, 1200);
+        });
+      })(gts[i]);
+    }
+    var gbr = el.querySelector('[data-gb="restart"]');
+    if (gbr) gbr.addEventListener('click', function(){ resetBilden(); render(); });
+    var gos = el.querySelectorAll('[data-ok]');
+    for (var i=0; i<gos.length; i++) {
+      (function(b) {
+        b.addEventListener('click', function() {
+          if (bLocked) return; bLocked=true;
+          var all=el.querySelectorAll('[data-ok]');
+          for (var j=0;j<all.length;j++){ all[j].disabled=true; if(all[j].dataset.ok==='1') all[j].classList.add('correct'); }
+          if (b.dataset.ok==='1') bScore++; else b.classList.add('wrong');
+          setTimeout(function(){ bIdx++; bLocked=false; render(); }, 1300);
+        });
+      })(gos[i]);
+    }
+    var gtn = el.querySelector('[data-gtab="next"]');
+    if (gtn) gtn.addEventListener('click', function(){
+      tTabIdx=(tTabIdx+1)%GRAM_TABELLEN.length; tRowDone=[]; render();
+    });
+    var gcs = el.querySelectorAll('.gram-cell-opt[data-row]');
+    for (var i=0; i<gcs.length; i++) {
+      (function(btn) {
+        btn.addEventListener('click', function() {
+          var ri=parseInt(btn.dataset.row);
+          if (tRowDone[ri]) return;
+          if (btn.dataset.ok==='1') { tRowDone[ri]='ok'; render(); }
+          else { btn.classList.add('wrong'); setTimeout(function(){ btn.classList.remove('wrong'); }, 500); }
+        });
+      })(gcs[i]);
+    }
+  }
+
+  render();
+}
+
+// ── Initialisierung ──────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+  VocabGame('gameNeu', VOCAB_NEU);
+  VocabGame('gameAlt', VOCAB_ALT);
+  GrammarGame('gameGrammar');
+});
+</script>
+</body>
+</html>
+var i = 0; i < gms.length; i++) {
+      (function(b) {
+        b.addEventListener('click', function() {
+          mode = b.dataset.gm;
+          if (mode==='erkennen') resetErkennen();
+          if (mode==='bilden')   resetBilden();
+          if (mode==='tabelle')  resetTabelle();
+          render();
+        });
+      })(gms[i]);
+    }
+
+    // Erkennen
+    var ger = el.querySelector('[data-ge="restart"]');
+    if (ger) ger.addEventListener('click', function() { resetErkennen(); render(); });
+    var gts = el.querySelectorAll('[data-gt]');
+    for (var i = 0; i < gts.length; i++) {
+      (function(b) {
+        b.addEventListener('click', function() {
+          if (eLocked) return; eLocked = true;
+          var chosen = b.dataset.gt, correct = eDeck[eIdx].tempus;
+          var all = el.querySelectorAll('[data-gt]');
+          for (var j=0; j<all.length; j++) all[j].disabled = true;
+          if (chosen === correct) { b.classList.add('correct'); eScore++; }
+          else {
+            b.classList.add('wrong');
+            for (var j=0; j<all.length; j++) if(all[j].dataset.gt===correct) all[j].classList.add('correct');
+          }
+          setTimeout(function() { eIdx++; eLocked=false; render(); }, 1200);
+        });
+      })(gts[i]);
+    }
+
+    // Bilden
+    var gbr = el.querySelector('[data-gb="restart"]');
+    if (gbr) gbr.addEventListener('click', function() { resetBilden(); render(); });
+    var gos = el.querySelectorAll('[data-ok]');
+    for (var i = 0; i < gos.length; i++) {
+      (function(b) {
+        b.addEventListener('click', function() {
+          if (bLocked) return; bLocked = true;
+          var all = el.querySelectorAll('[data-ok]');
+          for (var j=0; j<all.length; j++) { all[j].disabled = true; if(all[j].dataset.ok==='1') all[j].classList.add('correct'); }
+          if (b.dataset.ok === '1') bScore++; else b.classList.add('wrong');
+          setTimeout(function() { bIdx++; bLocked=false; render(); }, 1300);
+        });
+      })(gos[i]);
+    }
+
+    // Tabelle
+    var gtn = el.querySelector('[data-gtab="next"]');
+    if (gtn) gtn.addEventListener('click', function() {
+      tTabIdx = (tTabIdx + 1) % GRAM_TABELLEN.length; tRowDone = []; render();
+    });
+    var gcs = el.querySelectorAll('.gram-cell-opt[data-row]');
+    for (var i = 0; i < gcs.length; i++) {
+      (function(btn) {
+        btn.addEventListener('click', function() {
+          var ri = parseInt(btn.dataset.row);
+          if (tRowDone[ri]) return;
+          if (btn.dataset.ok === '1') {
+            tRowDone[ri] = 'ok';
+            render();
+          } else {
+            btn.classList.add('wrong');
+            setTimeout(function() { btn.classList.remove('wrong'); }, 500);
+          }
+        });
+      })(gcs[i]);
+    }
+  }
+
+  render();
+}
+
+// Spiele beim Seitenstart sofort initialisieren (Inhalt ist vorhanden, aber verborgen).
+// Das Öffnen/Schließen übernimmt der vorhandene togglePhase-Mechanismus.
+document.addEventListener('DOMContentLoaded', function() {
+  VocabGame('gameNeu', VOCAB_NEU);
+  VocabGame('gameAlt', VOCAB_ALT);
+  GrammarGame('gameGrammar');
 });
 </script>
 </body>
