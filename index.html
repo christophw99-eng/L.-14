@@ -833,6 +833,100 @@
   .gram-score-row { display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--stein-hell); }
   .gram-done { text-align: center; padding: 24px; }
   .gram-done h3 { color: var(--gold-hell); font-size: 1.3rem; margin-bottom: 10px; }
+
+  /* ─── STOPPUHR ───────────────────────────────────────────── */
+  .timer-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(201,164,77,0.15);
+    flex-wrap: wrap;
+  }
+  .timer-ziel {
+    font-size: 0.72rem;
+    color: #9A8060;
+    flex: 1;
+    white-space: nowrap;
+  }
+  .timer-disp {
+    font-size: 0.95rem;
+    font-weight: bold;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.05em;
+    color: var(--stein-hell);
+    min-width: 42px;
+    text-align: right;
+    transition: color 0.3s;
+  }
+  .timer-disp.laufend { color: #7ACC7A; }
+  .timer-disp.ueber   { color: #E07060; }
+  .timer-start-btn {
+    font-size: 0.72rem;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 12px;
+    border: 1.5px solid rgba(201,164,77,0.35);
+    background: transparent;
+    color: var(--gold);
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .timer-start-btn:hover { background: rgba(201,164,77,0.15); }
+  .timer-start-btn.stopp-btn {
+    border-color: rgba(224,112,96,0.5);
+    color: #E07060;
+    animation: timerPulse 1.5s infinite;
+  }
+  .timer-start-btn.stopp-btn:hover { background: rgba(224,112,96,0.15); }
+  @keyframes timerPulse {
+    0%,100% { box-shadow: 0 0 0 0 rgba(224,112,96,0); }
+    50%      { box-shadow: 0 0 0 3px rgba(224,112,96,0.25); }
+  }
+  .timer-bar-wrap {
+    height: 2px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 1px;
+    margin-top: 5px;
+    overflow: hidden;
+  }
+  .timer-bar {
+    height: 100%;
+    border-radius: 1px;
+    width: 0%;
+    transition: width 0.8s linear, background 0.5s;
+    background: rgba(122,204,122,0.7);
+  }
+
+  /* ─── DREIFACH-WAHL (AB 10a/b/c) ─────────────────────────── */
+  .choice-triple {
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+  }
+  @media (max-width: 700px) {
+    .choice-triple { grid-template-columns: 1fr; }
+    .choice-triple .choice-oder { flex-direction: row; padding: 6px 0; }
+    .choice-triple .choice-oder::before,
+    .choice-triple .choice-oder::after { width: auto; height: 1px; flex: 1; }
+  }
+
+  /* ─── PASSWORT-BUTTON ─────────────────────────────────────── */
+  .lock-btn {
+    font-size: 0.78rem;
+    padding: 5px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(139,26,26,0.35);
+    background: rgba(139,26,26,0.08);
+    color: var(--rot);
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s;
+    margin-top: 8px;
+    display: inline-block;
+  }
+  .lock-btn:hover { background: rgba(139,26,26,0.18); }
 </style>
 </head>
 <body>
@@ -1146,53 +1240,47 @@
       <div class="phase-toggle">▾</div>
     </div>
     <div class="phase-body">
-      <div class="section-label">Übersetzung – wähle deinen Weg</div>
-      <div class="ab-grid">
-        <div class="ab-item" data-id="ab08a">
-          <div class="ab-check-row">
-            <input type="checkbox" class="ab-check">
-            <div class="ab-text">
-              <div class="ab-title">AB 8: Übersetzung (viele Hilfen)</div>
-              <div class="ab-sub">Mit Vokabelangaben, Konstruktionshilfen und Satzanalyse</div>
-              <div class="ab-links">
-                <a class="ab-link pdf" href="AB_08_Uebersetzung_vielHilfen.pdf" target="_blank">📄 Viele Hilfen</a>
-              </div>
-            </div>
+      <div class="section-label">Übersetzung – wähle deinen Weg <span style="font-weight:normal;font-style:italic;">(nur einen ankreuzen)</span></div>
+
+      <div class="choice-group choice-triple">
+        <div class="choice-card profi">
+          <div class="choice-level">📜 AB 12 · Ohne Hilfen</div>
+          <div class="choice-title">AB 12: Textblatt L. 14</div>
+          <div class="choice-sub">Nur der lateinische Text mit großem Zeilenabstand – für selbstständige Übersetzer.</div>
+          <div class="ab-links" style="margin-top:10px">
+            <a class="ab-link pdf" href="AB_12_Textblatt_grosserZeilenabstand.pdf" target="_blank">📄 AB 12 (PDF)</a>
           </div>
         </div>
-        <div class="ab-item" data-id="ab08b">
-          <div class="ab-check-row">
-            <input type="checkbox" class="ab-check">
-            <div class="ab-text">
-              <div class="ab-title">AB 8: Übersetzung (wenig Hilfen)</div>
-              <div class="ab-sub">Mit einzelnen Vokabelangaben – für Fortgeschrittene</div>
-              <div class="ab-links">
-                <a class="ab-link pdf" href="AB_08_Uebersetzung_wenigHilfen.pdf" target="_blank">📄 Wenig Hilfen</a>
-              </div>
-            </div>
+        <div class="choice-oder">ODER</div>
+        <div class="choice-card basis">
+          <div class="choice-level">📝 AB 13 · Mittel</div>
+          <div class="choice-title">AB 13: Übersetzung (mittel Hilfen)</div>
+          <div class="choice-sub">Mit einzelnen Vokabelangaben und Konstruktionshinweisen.</div>
+          <div class="ab-links" style="margin-top:10px">
+            <a class="ab-link pdf" href="AB_13_Textblatt_mittelHilfen.pdf" target="_blank">📄 AB 13 (PDF)</a>
           </div>
         </div>
-        <div class="ab-item" data-id="ab08c">
-          <div class="ab-check-row">
-            <input type="checkbox" class="ab-check">
-            <div class="ab-text">
-              <div class="ab-title">AB 8: Übersetzung (ohne Hilfen)</div>
-              <div class="ab-sub">Nur der lateinische Text – für selbstständige Übersetzer</div>
-              <div class="ab-links">
-                <a class="ab-link pdf" href="AB_08_Uebersetzung_ohneHilfen.pdf" target="_blank">📄 Ohne Hilfen</a>
-              </div>
-            </div>
+        <div class="choice-oder">ODER</div>
+        <div class="choice-card basis">
+          <div class="choice-level">🧭 AB 14 · Viele Hilfen</div>
+          <div class="choice-title">AB 14: Übersetzung (viele Hilfen)</div>
+          <div class="choice-sub">Mit Vokabelangaben, Konstruktionshilfen und Satzanalyse. Nur mit Lehrerfreigabe.</div>
+          <div id="ab14-lock">
+            <button class="lock-btn" onclick="unlockAb14()">🔒 Vom Lehrer freischalten</button>
+          </div>
+          <div id="ab14-link" style="display:none; margin-top:8px">
+            <a class="ab-link pdf" href="AB_14_Textblatt_vielHilfen.pdf" target="_blank">📄 AB 14 (PDF)</a>
           </div>
         </div>
-        <div class="ab-item" data-id="textblatt">
+      </div>
+
+      <div class="ab-grid" style="margin-top:12px; grid-template-columns: 1fr;">
+        <div class="ab-item" data-id="ab08-done" style="border-color: rgba(201,164,77,0.5); background: rgba(201,164,77,0.07);">
           <div class="ab-check-row">
             <input type="checkbox" class="ab-check">
             <div class="ab-text">
-              <div class="ab-title">Textblatt L. 14</div>
-              <div class="ab-sub">Lateinischer Text mit großem Zeilenabstand – je ein Satz pro Zeile</div>
-              <div class="ab-links">
-                <a class="ab-link pdf" href="AB_12_Textblatt_grosserZeilenabstand.pdf" target="_blank">📄 Textblatt</a>
-              </div>
+              <div class="ab-title">✓ Übersetzung abgeschlossen</div>
+              <div class="ab-sub">Ich habe AB 13 <em>oder</em> AB 14 vollständig bearbeitet – und bin bereit für den Grammaticus.</div>
             </div>
           </div>
         </div>
@@ -1206,7 +1294,7 @@
         </div>
       </div>
 
-      <div class="section-label" style="margin-top:20px">Übersetzungsvergleich & Korrektur</div>
+      <div class="section-label" style="margin-top:20px">Übersetzungsvergleich &amp; Korrektur</div>
       <div class="ab-grid">
         <div class="ab-item" data-id="ab09">
           <div class="ab-check-row">
@@ -1223,7 +1311,7 @@
       </div>
 
       <div class="hinweis">
-        💡 <strong>Hinweis:</strong> Wähle <em>einen</em> der drei Übersetzungswege (viele / wenig / ohne Hilfen). Nach der Übersetzung zum Grammaticus – dann AB 9 für den Vergleich.
+        💡 <strong>Hinweis:</strong> Wähle <em>einen</em> der beiden Übersetzungswege (AB 13 oder AB 14). Nach der Übersetzung zum Grammaticus – dann AB 9 für den Vergleich.
       </div>
     </div>
   </div>
@@ -1259,51 +1347,54 @@
         </div>
       </div>
 
-      <div class="section-label" style="margin-top:20px">Vertiefung – freie Wahl (mind. eine Aufgabe)</div>
-      <div class="ab-grid">
-        <div class="ab-item" data-id="ab10a">
-          <div class="ab-check-row">
-            <input type="checkbox" class="ab-check">
-            <div class="ab-text">
-              <div class="ab-title">AB 10a: Standbild &amp; Bericht</div>
-              <div class="ab-sub">Die Schlüsselszene als Standbild darstellen und beschreiben</div>
-              <div class="ab-links">
-                <a class="ab-link pdf" href="AB_10a_Standbild_Bericht.pdf" target="_blank">📄 Aufgabe</a>
-                <a class="ab-link lsg" href="AB_10a_Loesung.pdf" target="_blank">✓ Lösung</a>
-              </div>
-            </div>
+      <div class="section-label" style="margin-top:20px">Vertiefung – freie Wahl <span style="font-weight:normal;font-style:italic;">(mindestens eine, nur einen Haken setzen)</span></div>
+
+      <div class="choice-group choice-triple">
+        <div class="choice-card">
+          <div class="choice-level">🎭 AB 10a</div>
+          <div class="choice-title">Standbild &amp; Bericht</div>
+          <div class="choice-sub">Die Schlüsselszene als Standbild darstellen und beschreiben.</div>
+          <div class="ab-links" style="margin-top:10px">
+            <a class="ab-link pdf" href="AB_10a_Standbild_Bericht.pdf" target="_blank">📄 Aufgabe</a>
+            <a class="ab-link lsg" href="AB_10a_Loesung.pdf" target="_blank">✓ Lösung</a>
           </div>
         </div>
-        <div class="ab-item" data-id="ab10b">
-          <div class="ab-check-row">
-            <input type="checkbox" class="ab-check">
-            <div class="ab-text">
-              <div class="ab-title">AB 10b: Gerichtsverhandlung</div>
-              <div class="ab-sub">War Romulus schuldig? – Spontanes Rollenspiel vor der Klasse</div>
-              <div class="ab-links">
-                <a class="ab-link pdf" href="AB_10b_Gerichtsverhandlung.pdf" target="_blank">📄 Aufgabe</a>
-                <a class="ab-link lsg" href="AB_10b_Loesung.pdf" target="_blank">✓ Lösung</a>
-              </div>
-            </div>
+        <div class="choice-oder">ODER</div>
+        <div class="choice-card">
+          <div class="choice-level">⚖️ AB 10b</div>
+          <div class="choice-title">Gerichtsverhandlung</div>
+          <div class="choice-sub">War Romulus schuldig? – Spontanes Rollenspiel vor der Klasse.</div>
+          <div class="ab-links" style="margin-top:10px">
+            <a class="ab-link pdf" href="AB_10b_Gerichtsverhandlung.pdf" target="_blank">📄 Aufgabe</a>
+            <a class="ab-link lsg" href="AB_10b_Loesung.pdf" target="_blank">✓ Lösung</a>
           </div>
         </div>
-        <div class="ab-item" data-id="ab10c">
+        <div class="choice-oder">ODER</div>
+        <div class="choice-card">
+          <div class="choice-level">📰 AB 10c</div>
+          <div class="choice-title">FAKE NEWS? – Sage &amp; Wirklichkeit</div>
+          <div class="choice-sub">Was stimmt – und was ist erfunden? Sage und Geschichte vergleichen.</div>
+          <div class="ab-links" style="margin-top:10px">
+            <a class="ab-link pdf" href="AB_10c_Sage_und_Wirklichkeit.pdf" target="_blank">📄 Aufgabe</a>
+            <a class="ab-link lsg" href="AB_10c_Loesung.pdf" target="_blank">✓ Lösung</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ab-grid" style="margin-top:12px; grid-template-columns: 1fr;">
+        <div class="ab-item" data-id="ab10-done" style="border-color: rgba(201,164,77,0.5); background: rgba(201,164,77,0.07);">
           <div class="ab-check-row">
             <input type="checkbox" class="ab-check">
             <div class="ab-text">
-              <div class="ab-title">AB 10c: FAKE NEWS? – Sage &amp; Wirklichkeit</div>
-              <div class="ab-sub">Was stimmt – und was ist erfunden? Sage und Geschichte vergleichen</div>
-              <div class="ab-links">
-                <a class="ab-link pdf" href="AB_10c_Sage_und_Wirklichkeit.pdf" target="_blank">📄 Aufgabe</a>
-                <a class="ab-link lsg" href="AB_10c_Loesung.pdf" target="_blank">✓ Lösung</a>
-              </div>
+              <div class="ab-title">✓ Verständnisaufgabe abgeschlossen</div>
+              <div class="ab-sub">Ich habe mindestens eine Aufgabe (AB 10a, 10b <em>oder</em> 10c) vollständig bearbeitet.</div>
             </div>
           </div>
         </div>
       </div>
 
       <div class="hinweis">
-        💡 <strong>Freie Wahl:</strong> Bearbeite mindestens <strong>eine</strong> der drei Vertiefungsaufgaben (AB 10a, 10b oder 10c). Wer Zeit hat, kann alle drei bearbeiten.
+        💡 <strong>Freie Wahl:</strong> Bearbeite mindestens <strong>eine</strong> der drei Aufgaben (AB 10a, 10b oder 10c). Wer Zeit hat, kann auch alle bearbeiten.
       </div>
 
       <div class="section-label" style="margin-top:20px">Zum Schluss: Lernrückblick</div>
@@ -1518,19 +1609,18 @@
 
         <div style="padding:10px 0; font-size:0.82rem;">
           <div class="section-label" style="margin-top:4px">Übersetzung</div>
-          <a class="ab-link pdf" href="AB_08_Uebersetzung_vielHilfen.pdf" target="_blank">📄 AB 8 viele Hilfen</a>
-          <div style="margin-top:6px"><a class="ab-link pdf" href="AB_08_Uebersetzung_wenigHilfen.pdf" target="_blank">📄 AB 8 wenig Hilfen</a></div>
-          <div style="margin-top:6px"><a class="ab-link pdf" href="AB_08_Uebersetzung_ohneHilfen.pdf" target="_blank">📄 AB 8 ohne Hilfen</a></div>
-          <div style="margin-top:6px"><a class="ab-link pdf" href="AB_12_Textblatt_grosserZeilenabstand.pdf" target="_blank">📄 Textblatt</a></div>
+          <a class="ab-link pdf" href="AB_12_Textblatt_grosserZeilenabstand.pdf" target="_blank">📄 AB 12 Textblatt</a>
+          <div style="margin-top:6px"><a class="ab-link pdf" href="AB_13_Textblatt_mittelHilfen.pdf" target="_blank">📄 AB 13 mittel Hilfen</a></div>
+          <div style="margin-top:6px"><a class="ab-link pdf" href="AB_14_Textblatt_vielHilfen.pdf" target="_blank">📄 AB 14 viele Hilfen 🔒</a></div>
           <div style="margin-top:6px"><a class="ab-link pdf" href="AB_09_Uebersetzungsvergleich.pdf" target="_blank">📄 AB 9 Vergleich</a></div>
         </div>
 
         <div style="padding:10px 0; font-size:0.82rem;">
           <div class="section-label" style="margin-top:4px">Abschluss &amp; Vertiefung</div>
           <a class="ab-link pdf" href="AB_11a_Abschluss.pdf" target="_blank">📄 AB 11a Leitfrage</a>
-          <div style="margin-top:6px"><a class="ab-link pdf" href="AB_10a_Standbild_Bericht.pdf" target="_blank">📄 AB 10a Standbild</a></div>
-          <div style="margin-top:6px"><a class="ab-link pdf" href="AB_10b_Gerichtsverhandlung.pdf" target="_blank">📄 AB 10b Gericht</a></div>
-          <div style="margin-top:6px"><a class="ab-link pdf" href="AB_10c_Sage_und_Wirklichkeit.pdf" target="_blank">📄 AB 10c FAKE NEWS?</a></div>
+          <div style="margin-top:6px"><a class="ab-link pdf" href="AB_10a_Standbild_Bericht.pdf" target="_blank">📄 AB 10a</a></div>
+          <div style="margin-top:6px"><a class="ab-link pdf" href="AB_10b_Gerichtsverhandlung.pdf" target="_blank">📄 AB 10b</a></div>
+          <div style="margin-top:6px"><a class="ab-link pdf" href="AB_10c_Sage_und_Wirklichkeit.pdf" target="_blank">📄 AB 10c</a></div>
           <div style="margin-top:6px"><a class="ab-link pdf" href="AB_11b_Lernrückblick.pdf" target="_blank">📄 AB 11b Rückblick</a></div>
         </div>
 
@@ -2045,7 +2135,7 @@ function VocabGame(containerId, vocabData) {
       'Runde ' + (dIdx+1) + ' von ' + D_ROUNDS + '</p>';
   }
 
-  // ── Tippen ────────────�
+  // ── Tippen ────────────�
   // ── Tippen ─────────────────────────────────────────────
   function buildTippen() {
     if (tIdx >= tDeck.length) {
@@ -2575,6 +2665,199 @@ document.addEventListener('DOMContentLoaded', function() {
   GrammarGame('gameGrammar');
 });
 </script>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+//  STOPPUHR-SYSTEM
+// ═══════════════════════════════════════════════════════════
+
+var TIMER_KEY = 'latein_l14_timer_v1';
+
+var ZIELZEITEN = {
+  e1:          2,
+  e2:          5,
+  ab02:        15,
+  'ab03-done': 10,
+  ab04:        12,
+  ab05:        8,
+  ab06:        10,
+  ab07:        5,
+  'ab08-done': 25,
+  ab09:        10,
+  ab11a:       10,
+  'ab10-done': 15,
+  ab11b:       8
+};
+
+// ─── PASSWORTSCHUTZ AB 14 ─────────────────────────────────
+var AB14_KEY = 'latein_l14_ab14_unlocked';
+
+function unlockAb14() {
+  var pw = prompt('Lehrerpasswort für AB 14 eingeben:');
+  if (pw === null) return;
+  if (pw === 'Lehrer2025') {
+    showAb14();
+    try { localStorage.setItem(AB14_KEY, '1'); } catch(e) {}
+  } else {
+    alert('Falsches Passwort – bitte den Lehrer fragen.');
+  }
+}
+
+function showAb14() {
+  var lock = document.getElementById('ab14-lock');
+  var link = document.getElementById('ab14-link');
+  if (lock) lock.style.display = 'none';
+  if (link) link.style.display = 'block';
+}
+
+function restoreAb14Unlock() {
+  try {
+    if (localStorage.getItem(AB14_KEY) === '1') showAb14();
+  } catch(e) {}
+}
+
+var timerState = {};
+var timerIntervals = {};
+
+function loadTimerState() {
+  try {
+    var raw = localStorage.getItem(TIMER_KEY);
+    if (raw) timerState = JSON.parse(raw);
+  } catch(e) { timerState = {}; }
+  for (var id in timerState) {
+    timerState[id].running = false;
+    timerState[id].startedAt = null;
+  }
+}
+
+function saveTimerState() {
+  try { localStorage.setItem(TIMER_KEY, JSON.stringify(timerState)); } catch(e) {}
+}
+
+function ensureState(id) {
+  if (!timerState[id]) timerState[id] = { elapsed: 0, running: false, startedAt: null };
+}
+
+function liveElapsed(id) {
+  var s = timerState[id];
+  if (!s) return 0;
+  if (s.running && s.startedAt) return s.elapsed + Math.floor((Date.now() - s.startedAt) / 1000);
+  return s.elapsed;
+}
+
+function fmtTimer(sec) {
+  var m = Math.floor(sec / 60), s = sec % 60;
+  return (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+}
+
+function updateTimerDisplay(id) {
+  var zielSek = (ZIELZEITEN[id] || 10) * 60;
+  var tot = liveElapsed(id);
+  var s = timerState[id];
+  var disp = document.getElementById('td-' + id);
+  var bar  = document.getElementById('tbar-' + id);
+  var btn  = document.getElementById('tb-' + id);
+  if (disp) {
+    disp.textContent = fmtTimer(tot);
+    disp.className = 'timer-disp' +
+      (s && s.running ? (tot > zielSek ? ' ueber' : ' laufend') : (tot > zielSek ? ' ueber' : ''));
+  }
+  if (bar) {
+    var pct = Math.min(100, tot / zielSek * 100);
+    bar.style.width = pct + '%';
+    bar.style.background = tot > zielSek ? 'rgba(224,112,96,0.7)' :
+                           tot > zielSek * 0.85 ? 'rgba(201,164,77,0.7)' :
+                           'rgba(122,204,122,0.7)';
+  }
+  if (btn) {
+    if (s && s.running) {
+      btn.textContent = '⏹ Stopp';
+      btn.className = 'timer-start-btn stopp-btn';
+    } else {
+      btn.textContent = tot > 0 ? '▶ Weiter' : '▶ Start';
+      btn.className = 'timer-start-btn';
+    }
+  }
+}
+
+function toggleTimer(id) {
+  ensureState(id);
+  var s = timerState[id];
+  if (s.running) {
+    s.elapsed += Math.floor((Date.now() - s.startedAt) / 1000);
+    s.running = false; s.startedAt = null;
+    clearInterval(timerIntervals[id]); delete timerIntervals[id];
+  } else {
+    s.running = true; s.startedAt = Date.now();
+    timerIntervals[id] = setInterval(function() { updateTimerDisplay(id); }, 1000);
+  }
+  saveTimerState();
+  updateTimerDisplay(id);
+}
+
+function injectTimers() {
+  var items = document.querySelectorAll('[data-id]');
+  for (var i = 0; i < items.length; i++) {
+    var item = items[i];
+    var id = item.dataset.id;
+    if (!ZIELZEITEN[id]) continue;
+    ensureState(id);
+    var ziel = ZIELZEITEN[id];
+
+    var row = document.createElement('div');
+    row.className = 'timer-row';
+    row.innerHTML =
+      '<span class="timer-ziel">⏱ Ziel: ' + ziel + ' Min.</span>' +
+      '<span class="timer-disp" id="td-' + id + '">' + fmtTimer(liveElapsed(id)) + '</span>' +
+      '<button class="timer-start-btn" id="tb-' + id + '">▶ Start</button>';
+
+    var barWrap = document.createElement('div');
+    barWrap.className = 'timer-bar-wrap';
+    barWrap.innerHTML = '<div class="timer-bar" id="tbar-' + id + '"></div>';
+
+    var abText = item.querySelector('.ab-text');
+    var target = abText || item;
+    target.appendChild(row);
+    target.appendChild(barWrap);
+
+    (function(tid) {
+      var btn = document.getElementById('tb-' + tid);
+      if (btn) btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleTimer(tid);
+      });
+    })(id);
+
+    updateTimerDisplay(id);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  loadTimerState();
+  injectTimers();
+  restoreAb14Unlock();
+
+  var btnR = document.getElementById('btnReset');
+  if (btnR) {
+    btnR.addEventListener('click', function() {
+      setTimeout(function() {
+        var checked = document.querySelectorAll('.ab-check:checked');
+        if (checked.length === 0) {
+          for (var id in timerIntervals) { clearInterval(timerIntervals[id]); }
+          timerIntervals = {}; timerState = {};
+          try { localStorage.removeItem(TIMER_KEY); } catch(e) {}
+          var allItems = document.querySelectorAll('[data-id]');
+          for (var i = 0; i < allItems.length; i++) {
+            var tid = allItems[i].dataset.id;
+            if (ZIELZEITEN[tid]) { ensureState(tid); updateTimerDisplay(tid); }
+          }
+        }
+      }, 150);
+    });
+  }
+});
+</script>
+
 </body>
 </html>
 var i = 0; i < gms.length; i++) {
